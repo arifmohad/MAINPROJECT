@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>login</title>
+</head>
+
+<body>
+<form action="subjbtn" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <div align="center">
+    <table width="344" border="1">
+      <tr>
+        <td colspan="2"><div align="center">SUBJECT</div></td>
+      </tr>
+       <tr>
+        <td>subject</td>
+        <td><label>
+          <input type="text" name="subject" />
+        </label></td>
+      </tr>
+       <tr>
+        <td>Semester</td>
+        <td><label>
+          <select name="select">
+              <option value="1">S1</option>
+              <option value="2">S2</option>
+              <option value="3">S3</option>
+              <option value="4">S4</option>
+              <option value="5">S5</option>
+              <option value="6">S6</option>
+              <option value="7">S7</option>
+              <option value="8">S8</option>
+                 </select>
+        </label></td>
+      </tr>
+      
+      
+      <tr>
+        <td width="86">course</td>
+        <td width="242"><label>
+          <select name="select">
+            {% for i in val %}
+            <option value="{{i.id}}">{{i.course_name}}</option>
+            {% endfor %}
+          </select>
+        </label></td>
+      </tr>
+
+      
+      
+      
+      <tr>
+        <td colspan="2"><label>
+          <div align="center">
+            <input type="submit" name="Submit" value="Submit" />
+            </div>
+        </label></td>
+      </tr>
+      </table>  
+  </div>
+  <div align="center"></div>
+</form>
+</body>
+</html>
