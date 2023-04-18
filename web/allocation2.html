@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="updanswer" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <div align="center">
+    <table width="344" border="1">
+      <tr>
+        <!--<td colspan="2"><div align="center">ALLOCATE STAFF </div></td>-->
+      </tr>
+      <tr>
+        <td>No of sheet</td>
+          <td><label>
+          <input type="text" name="sheetnum" />
+        </label></td>
+      </tr>
+        <tr>
+        <td width="86">staff </td>
+         <td><select name="select" id="rrr">
+            {% for i in v %}
+            <option value="{{i.id}}">{{i.}}</option>
+            {% endfor %}
+      </select></td>
+      </tr>
+        <tr>
+        <td colspan="2"><label>
+          <div align="center">
+            <input type="submit" name="Submit" value="Submit" />
+            </div>
+        </label></td>
+      </tr>
+
+</body>
+</html>

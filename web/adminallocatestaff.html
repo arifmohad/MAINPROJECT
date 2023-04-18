@@ -1,29 +1,105 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+{% extends 'admin index.html' %}
+{% block body %}
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>login</title>
 </head>
 
 <body>
-<form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
+<form action="updanswer" method="post" enctype="multipart/form-data" name="form1" id="form1">
   <div align="center">
     <table width="344" border="1">
       <tr>
-        <td colspan="2">NAME</td>
-        <td>COLLEGE</td>
-        <td>DEPARTMENT</td>
+        <!--<td colspan="2"><div align="center">ALLOCATE STAFF </div></td>-->
       </tr>
-         {% for i in val %}
       <tr>
-        <td width="328" colspan="2">&nbsp;{{ i.name }}</td>
-        <td width="328">&nbsp;{{ i.college_id.college_name }}</td>
-        <td width="328">&nbsp;{{ i.department_id.dept }}</td>
+        <td>Date</td>
+        <td width="86">subject </td>
+       <!--<td><select name="select" id="">-->
+            <!--{% for i in v %}-->
+            <!--<option value="{{i.id}}">{{i.}}</option>-->
+            <!--{% endfor %}-->
+      <!--</select></td>-->
+
+        <td width="86">answer sheet </td>
+         <!--<td><select name="select" id="rrr">-->
+            <!--{% for i in v %}-->
+            <!--<option value="{{i.id}}">{{i.answersheet_id}}</option>-->
+            <!--{% endfor %}-->
+      <!--</select></td>-->
       </tr>
-         {% endfor %}
+       {% for i in val1  %}
+      <tr>
+      <td> {{ i.date }} </td>
+      <td> {{ i.subject_id.subject }} </td>
+      <td>&nbsp;{{ i. }}</td>
+      <td><p><a href="allocstf">allocate</a></p>
+      </td>
+    </tr>
+       {% endfor  %}
+
+      <!--<tr><td width="86">course </td>-->
+       <!--<td><select name="select" id="crs">-->
+            <!--{% for i in v %}-->
+            <!--<option value="{{i.id}}">{{i.}}</option>-->
+            <!--{% endfor %}-->
+      <!--</select></td></tr>-->
+
+      <!--<tr><td width="86">staff name </td>-->
+
+      <!--<td><select name="select" id="stud">-->
+
+      <!--</select></td></tr>-->
+      <!--<tr>-->
+        <!--<td width="86">subject name </td>-->
+
+        <!--<td><select name="select">-->
+            <!--{% for i in val1 %}-->
+            <!--<option value="{{i.id}}">{{i.answersheet_id.subject}} - {{i.course_id.course_name}}</option>-->
+            <!--{% endfor %}-->
+      <!--</select></td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+        <!--<td colspan="2"><label>-->
+          <!--<div align="center">-->
+            <!--<input type="submit" name="Submit" value="Submit" />-->
+            <!--</div>-->
+        <!--</label></td>-->
+      <!--</tr>-->
       </table>
   </div>
   <div align="center"></div>
 </form>
 </body>
-</html>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>-->
+    <!--<script type="text/javascript">-->
+
+    <!--$("#crs").change(function(){-->
+    <!--var sd;-->
+     <!--sd = $(this).val();-->
+<!--$.ajax(-->
+    <!--{-->
+        <!--type:"GET",-->
+        <!--url: "/searchcrs",-->
+        <!--data:{-->
+                 <!--dep: sd,-->
+        <!--},-->
+        <!--success: function( data )-->
+        <!--{-->
+        <!--var tab;-->
+        <!--tab='<option>Select</option>';-->
+        <!--for (var i=0, l=data.res.length; i<l; i++)-->
+        <!--{-->
+        <!--tab=tab+'<option value="'+data.res[i].id+'">'+data.res[i].name+'</option>'-->
+        <!--}-->
+
+<!--$('#stud').empty();-->
+<!--$('#stud').append(tab);-->
+        <!--}-->
+     <!--})-->
+
+<!--});-->
+
+<!--</script>-->
+{% endblock %}
+

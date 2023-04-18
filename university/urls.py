@@ -33,6 +33,7 @@ urlpatterns=[
     path('view_stdcomplaint',views.view_stdcomplaint,name="view_stdcomplaint"),
     path('delete/<int:id>', views.delete, name="delete"),
     path('adminallocatestaff', views.adminallocatestaff, name="adminallocatestaff"),
+    path('allocstf', views.allocstf, name="allocstf"),
 
     path('clgreg',views.clgreg,name="clgreg"),
     path('stfreg',views.stfreg,name="stfreg"),
@@ -46,8 +47,10 @@ urlpatterns=[
     path('complaintbtn', views.complaintbtn, name="complaintbtn"),
     path('search', views.search, name="search"),
     path('updanswer', views.updanswer, name="updanswer"),
-
-
+    path('searchcrs', views.searchcrs, name="searchcrs"),
+    path('view_adminexam', views.view_adminexam, name="view_adminexam"),
+    path('staffaloc', views.staffaloc, name="staffaloc"),
+    path('reqansbtn', views.reqansbtn, name="reqansbtn"),
 
 
     path('admin',views.admin,name="admin"),

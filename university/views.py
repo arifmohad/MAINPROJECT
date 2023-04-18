@@ -1,7 +1,7 @@
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render
 from university.models import *
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect
 from datetime import datetime
 
@@ -10,11 +10,12 @@ from datetime import datetime
 
 
 def main(request):
-    return render(request,"login.html")
+    return render(request,"loginindex.html")
 
 
 def allocatestaff(request):
-    return render(request,"allocate staff.html")
+    ob = staff_allocation.objects.all()
+    return render(request,"allocate staff.html",{'val':ob})
 
 
 def clgregist(request):
@@ -48,7 +49,8 @@ def addcourse(request):
 
 
 def request_ans(request):
-    return render(request,"request answer.html")
+    ob = subject.objects.all()
+    return render(request,"view/REQUESTOF ANSWER.html",{'val':ob})
 
 
 def addresult(request):
@@ -64,16 +66,35 @@ def addsubject(request):
     return render(request,"subject.html",{'val':ob})
 
 
+def searchcrs(request):
+    dep = request.GET['dep']
+    sob = student.objects.filter(id=dep,course_id__department_id__clgid__lid__id=request.session['lid'])
+    data = []
+    for r in sob:
+        row = {"id": r.id, "name": r.name}
+        data.append(row)
+    res = {"res": data}
+    print(res)
+    print(res)
+    return JsonResponse(res)
+
 def uploadanswer(request):
-    # ob1=course.objects.all()
+    ob1=course.objects.all()
     ob = student.objects.all()
     obj = subject.objects.all()
-    return render(request,"upload answersheet.html",{'val':ob,'val1':obj})
+    return render(request,"upload answersheet.html",{'val':ob,'val1':obj,'v':ob1})
 
 def adminallocatestaff(request):
-    ob = staff.objects.all()
+    obj = exam.objects.all()
+    ob = staff_allocation.objects.all()
 
-    return render(request,"adminallocatestaff.html",{'val':ob})
+    return render(request,"adminallocatestaff.html",{'val':ob,'val1':obj})
+
+def allocstf(request):
+    return render(request,"allocation2.html")
+
+
+
 
 def view_allocatestaff(request):
     return render(request,"view/allocate staff.html")
@@ -95,7 +116,12 @@ def view_exam(request):
 
     return render(request,"view/EXAM.html",{'val1':obj})
 
+def view_adminexam(request):
+    obj=exam.objects.all()
 
+
+
+    return render(request,"view/view_examadmin.html",{'val':obj})
 
 def search(request):
     subject_id = request.POST['select']
@@ -136,7 +162,7 @@ def view_stdcomplaint(request):
     return render(request,"view/view stdcomplaint.html",{'val':ob})
 
 def admin(request):
-    return render(request,"admin.html")
+    return render(request,"admin index.html")
 
 def stafpage(request):
     return render(request,"staff.html")
@@ -174,7 +200,7 @@ def clgreg(request):
     fob.lid = ob
     fob.save()
 
-    return HttpResponse('''<script>alert("Registration Successfull");window.location='/'</script> ''')
+    return HttpResponse('''<script>alert("Registration Successfull");window.location='/clg_details'</script> ''')
 
 
 # def logn(request):
@@ -198,7 +224,7 @@ def clgreg(request):
 #         return HttpResponse('''<script>alert("Invalid");window.location='/'</script> ''')
 
 def logn(request):
-    username=request.POST['username']
+    username=request.POST['uname']
     password=request.POST['password']
     try:
         ob=login.objects.get(username=username,password=password)
@@ -255,7 +281,10 @@ def stfreg(request):
 
 
 def stdreg(request):
+    regno= request.POST['name']
     name = request.POST['name']
+    father_name = request.POST['name']
+    mother_name = request.POST['name']
     place = request.POST['Place']
     gender=request.POST['radiobutton']
     post = request.POST['Post']
@@ -273,7 +302,10 @@ def stdreg(request):
     ob.save()
 
     sob = student()
+    sob.regno = regno
     sob.name = name
+    sob.father_name = father_name
+    sob.mother_name = mother_name
     sob.place = place
     sob.gender = gender
     sob.post = post
@@ -298,7 +330,7 @@ def exambtn(request):
     eob.subject_id=subject.objects.get(id=subject_id)
     eob.save()
 
-    return HttpResponse('''<script>alert("Registration Successfull");window.location='/'</script> ''')
+    return HttpResponse('''<script>alert("exam schedule added");window.location='/view_adminexam'</script> ''')
 
 def deptbtn(request):
     dept = request.POST['dept']
@@ -386,16 +418,45 @@ def updanswer(request):
     a=ans.save(answerpapper.name,answerpapper)
     student_id = request.POST['select']
     subject_id = request.POST['select']
-
-
     ob = answersheet()
-    ob.datetime = datetime.today()
     ob.student_id = student.objects.get(id=student_id)
     ob.subject_id = subject.objects.get(id=subject_id)
     ob.answerpapper = a
+    ob.date=datetime.today()
+    ob.save()
+    return HttpResponse('''<script>alert("send Successfull");window.location='/'</script> ''')
+
+
+def staffaloc(request):
+    score = request.POST['subject']
+    status = request.POST['select']
+    answersheet_id = request.POST['select']
+    staff_id = request.POST['select']
+    dob = staff_allocation()
+    dob.score = score
+    dob.status = status
+    dob.datetime = datetime.today()
+
+    dob.answersheet_id = staff_allocation.objects.get(id=answersheet_id)
+    dob.staff_id = staff_allocation.objects.get(id=staff_id)
+
+    dob.save()
+
+    return HttpResponse('''<script>alert("subject added");window.location='/view_subject'</script> ''')
+
+
+def reqansbtn(request):
+    subject = request.POST['select']
+
+    ob = request_answersheet()
+    ob.datetime = datetime.today()
+    ob.subject = subject
+    ob.status = "pending"
+
+    ob.student_id = student.objects.get(lid_id=request.session['lid'])
     ob.save()
 
-    return HttpResponse('''<script>alert("send Successfull");window.location='/'</script> ''')
+    return HttpResponse('''<script>alert("reques successs");window.location='/view_stdcomplaint'</script> ''')
 
 
 

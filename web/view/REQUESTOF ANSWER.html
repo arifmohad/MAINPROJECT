@@ -6,19 +6,43 @@
 </head>
 
 <body>
-<form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
+<form action="reqansbtn" method="post" enctype="multipart/form-data" name="form1" id="form1">
   <div align="center">
     <table width="344" border="1">
+      <!--<tr>-->
+        <!--<td width="90">date</td>-->
+        <!--<td width="173"><label>-->
+          <!--<input type="text" name="Reason" />-->
+        <!--</label></td>-->
+      <!--</tr>-->
+
+      <!--<tr>-->
+        <!--<td>status</td>-->
+        <!--<td><label>-->
+          <!--<input type="text" name="textfield4" />-->
+        <!--</label></td>-->
+      <!--</tr>-->
+
       <tr>
-        <td colspan="2">DATE</td>
-        <td>STATUS </td>
-        <td>&nbsp;</td>
-      </tr>
+
+
+        <td width="86">SUBJECT</td>
+        <td width="242"><label>
+          <select name="select">
+            {% for i in val %}
+            <option value="{{i.id}}">{{i.subject}}-{{i.course_id.course_name}}</option>
+            {% endfor %}
+          </select>
+       </tr>
+
       <tr>
-        <td width="328" colspan="2">&nbsp;</td>
-        <td width="328">&nbsp;</td>
-        <td width="328"><a href="#">Download</a></td>
+        <td colspan="2"><label>
+          <div align="center">
+            <input type="submit" name="Submit" value="send request" />
+            </div>
+        </label></td>
       </tr>
+
       </table>  
   </div>
   <div align="center"></div>

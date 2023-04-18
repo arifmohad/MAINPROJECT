@@ -19,18 +19,16 @@
         </label></td>
       </tr>
       <tr><td width="86">course </td>
-       <td><select name="select">
-            {% for i in val %}
-            <option value="{{i.id}}">{{i.}}</option>
+       <td><select name="select" id="crs">
+            {% for i in v %}
+            <option value="{{i.id}}">{{i.course_name}}</option>
             {% endfor %}
       </select></td></tr>
 
       <tr><td width="86">student name </td>
 
-      <td><select name="select">
-            {% for i in val %}
-            <option value="{{i.id}}">{{i.name}}</option>
-            {% endfor %}
+      <td><select name="select" id="stud">
+
       </select></td></tr>
       <tr>
         <td width="86">subject name </td>
@@ -53,5 +51,35 @@
   <div align="center"></div>
 </form>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    $("#crs").change(function(){
+    var sd;
+     sd = $(this).val();
+$.ajax(
+    {
+        type:"GET",
+        url: "/searchcrs",
+        data:{
+                 dep: sd,
+        },
+        success: function( data )
+        {
+        var tab;
+        tab='<option>Select</option>';
+        for (var i=0, l=data.res.length; i<l; i++)
+        {
+        tab=tab+'<option value="'+data.res[i].id+'">'+data.res[i].name+'</option>'
+        }
+
+$('#stud').empty();
+$('#stud').append(tab);
+        }
+     })
+
+});
+
+</script>
 </html>
 

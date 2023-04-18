@@ -43,6 +43,9 @@ class student(models.Model):
     lid=models.ForeignKey(login,on_delete=models.CASCADE)
     course_id=models.ForeignKey(course,on_delete=models.CASCADE)
     name=models.CharField(max_length=100)
+    regno = models.CharField(max_length=100)
+    father_name = models.CharField(max_length=100)
+    mother_name = models.CharField(max_length=100)
     gender=models.CharField(max_length=100)
     place=models.CharField(max_length=100)
     post=models.CharField(max_length=100)
@@ -102,7 +105,6 @@ class complaint(models.Model):
 class request_answersheet(models.Model):
     answersheet_id=models.ForeignKey(answersheet,on_delete=models.CASCADE)
     student_id=models.ForeignKey(student,on_delete=models.CASCADE)
-    subject_id=models.ForeignKey(subject,on_delete=models.CASCADE)
     datetime=models.DateField()
     status=models.CharField(max_length=100)
 
