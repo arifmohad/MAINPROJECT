@@ -12,7 +12,7 @@
       <tr>
         <td>DEPARTMENT </td>
         <td>COLLEGE NAME</td>
-          <td>COUIRSE </td>
+          <td>COURSE </td>
 
           <td>SUBJECT </td>
         <td>SEMESTER</td>
@@ -24,7 +24,7 @@
         <td width="328">&nbsp;{{ i.course_id.department_id.dept }}</td>
         <td width="328">{{ i.course_id.department_id.clgid.college_name }}</td>
            <td width="328">&nbsp;{{ i.course_id.course_name }}</td>
-          <td width="328">&nbsp;{{ i.subject }}</td>
+          <td width="328">&nbsp;{{ i.subjects }}</td>
         <td width="328">&nbsp;{{ i.semester }}</td>
           <td><a href="{% url 'delete' id=i.id %}">delete</a></td>
       </tr>

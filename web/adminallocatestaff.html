@@ -31,9 +31,9 @@
        {% for i in val1  %}
       <tr>
       <td> {{ i.date }} </td>
-      <td> {{ i.subject_id.subject }} </td>
-      <td>&nbsp;{{ i. }}</td>
-      <td><p><a href="allocstf">allocate</a></p>
+      <td> {{ i.subject_id.subjects }} </td>
+      <td>&nbsp;{{ i.count }}</td>
+      <td><p><a href="allocstf/{{i.id}}">allocate</a></p>
       </td>
     </tr>
        {% endfor  %}

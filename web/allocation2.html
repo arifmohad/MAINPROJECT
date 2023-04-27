@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="updanswer" method="post" enctype="multipart/form-data" name="form1" id="form1">
+<form action="{% url 'admin_staffaloc' %}" method="post" enctype="multipart/form-data" name="form1" id="form1">
   <div align="center">
     <table width="344" border="1">
       <tr>
@@ -20,8 +20,8 @@
         <tr>
         <td width="86">staff </td>
          <td><select name="select" id="rrr">
-            {% for i in v %}
-            <option value="{{i.id}}">{{i.}}</option>
+            {% for i in val %}
+            <option value="{{i.id}}">{{i.name}}</option>
             {% endfor %}
       </select></td>
       </tr>

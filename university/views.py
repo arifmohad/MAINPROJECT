@@ -4,7 +4,7 @@ from university.models import *
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect
 from datetime import datetime
-
+from django.db import connection
 # Create your views here.
 
 
@@ -45,11 +45,16 @@ def adddepartment(request):
 
 
 def addcourse(request):
-    return render(request,"course.html")
+    ob = department.objects.all()
+    return render(request,"course.html",{'val':ob})
 
 
 def request_ans(request):
-    ob = subject.objects.all()
+    ob = request_answersheet.objects.filter(student_id__lid__id=request.session['lid'])
+    return render(request,"stdreqanswer.html",{'val':ob})
+
+def request_ansadd(request):
+    ob = answersheet.objects.filter(student_id__lid__id=request.session['lid'])
     return render(request,"view/REQUESTOF ANSWER.html",{'val':ob})
 
 
@@ -68,7 +73,7 @@ def addsubject(request):
 
 def searchcrs(request):
     dep = request.GET['dep']
-    sob = student.objects.filter(id=dep,course_id__department_id__clgid__lid__id=request.session['lid'])
+    sob = student.objects.filter(course_id__department_id__clgid__lid__id=request.session['lid'],course_id__id=dep)
     data = []
     for r in sob:
         row = {"id": r.id, "name": r.name}
@@ -81,20 +86,34 @@ def searchcrs(request):
 def uploadanswer(request):
     ob1=course.objects.all()
     ob = student.objects.all()
-    obj = subject.objects.all()
+    obj = exam.objects.all()
     return render(request,"upload answersheet.html",{'val':ob,'val1':obj,'v':ob1})
 
 def adminallocatestaff(request):
     obj = exam.objects.all()
-    ob = staff_allocation.objects.all()
+    result=[]
+    for i in obj:
+        obans=answersheet.objects.filter(exam_id__id=i.id)
+        cans=len(obans)
 
-    return render(request,"adminallocatestaff.html",{'val':ob,'val1':obj})
+        ob = staff_allocation.objects.filter(answersheet_id__exam_id__id=i.id)
+        rcount=cans-len(ob)
+        i.count=rcount
+        print(i.subject_id.subjects)
+        if i.count>0:
+            result.append(i)
 
-def allocstf(request):
-    return render(request,"allocation2.html")
+    return render(request,"adminallocatestaff.html",{'val':ob,'val1':result})
+
+def allocstf(request,id):
+    request.session['eid']=id
+    ob = staff.objects.all()
+    return render(request,"allocation2.html",{'val':ob})
 
 
-
+def view_ansrequest(request):
+    ob = request_answersheet.objects.all()
+    return render(request,"view ansrequest.html",{'val':ob})
 
 def view_allocatestaff(request):
     return render(request,"view/allocate staff.html")
@@ -281,10 +300,10 @@ def stfreg(request):
 
 
 def stdreg(request):
-    regno= request.POST['name']
+    regno= request.POST['rgno']
     name = request.POST['name']
-    father_name = request.POST['name']
-    mother_name = request.POST['name']
+    father_name = request.POST['fname']
+    mother_name = request.POST['mname']
     place = request.POST['Place']
     gender=request.POST['radiobutton']
     post = request.POST['Post']
@@ -316,7 +335,7 @@ def stdreg(request):
     sob.lid = ob
     sob.save()
 
-    return HttpResponse('''<script>alert("Registration Successfull");window.location='/'</script> ''')
+    return HttpResponse('''<script>alert("Registration Successfull");window.location='/studentregist'</script> ''')
 
 
 def exambtn(request):
@@ -347,12 +366,10 @@ def deptbtn(request):
 
 def coursebtn(request):
     course_name = request.POST['course']
-    course_code = request.POST['code']
     department_id = request.POST['select']
 
     dob = course()
     dob.course_name = course_name
-    dob.course_code = course_code
     dob.department_id=department.objects.get(id=department_id)
 
     dob.save()
@@ -361,12 +378,12 @@ def coursebtn(request):
 
 
 def subjbtn(request):
-    subject1 = request.POST['subject']
-    semester = request.POST['select']
+    subjects = request.POST['subject']
+    semester = request.POST['select1']
     course_id = request.POST['select']
 
     dob = subject()
-    dob.subject = subject1
+    dob.subjects = subjects
     dob.semester = semester
     dob.course_id=course.objects.get(id=course_id)
 
@@ -396,10 +413,24 @@ def complaintbtn(request):
 
     return HttpResponse('''<script>alert("complaint added");window.location='/view_stdcomplaint'</script> ''')
 
+def approve(request,id):
+    obj=request_answersheet.objects.get(id=id)
+    obj.status='approved'
+    obj.save()
+    return redirect('/view_ansrequest')
+
+def reject(request,id):
+    obj=request_answersheet.objects.get(id=id)
+    obj.status='rejected'
+    obj.save()
+    return redirect('/view_ansrequest')
+
 
 def reply(request,id):
     request.session['cid']=id
     return render(request,"replay.html")
+
+
 
 def compreply(request):
     replay = request.POST['replay']
@@ -416,15 +447,38 @@ def updanswer(request):
     answerpapper = request.FILES['file']
     ans=FileSystemStorage()
     a=ans.save(answerpapper.name,answerpapper)
-    student_id = request.POST['select']
-    subject_id = request.POST['select']
+    student_id = request.POST['select1']
+    exam_id = request.POST['select3']
+
     ob = answersheet()
     ob.student_id = student.objects.get(id=student_id)
-    ob.subject_id = subject.objects.get(id=subject_id)
+    ob.exam_id = exam.objects.get(id=exam_id)
     ob.answerpapper = a
     ob.date=datetime.today()
     ob.save()
-    return HttpResponse('''<script>alert("send Successfull");window.location='/'</script> ''')
+    return HttpResponse('''<script>alert("send Successfull");window.location='/uploadanswer'</script> ''')
+
+
+def admin_staffaloc(request):
+    sno = request.POST['sheetnum']
+    sid = request.POST['select']
+    eid=request.session['eid']
+    obstaff=staff.objects.get(id=sid)
+
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT `id` FROM `university_answersheet` WHERE `id` NOT IN(SELECT `answersheet_id_id` FROM `university_staff_allocation`) AND `exam_id_id`="+str(eid)+" LIMIT "+str(sno))
+        row = cursor.fetchall()
+        print(row,"++++++++++++++++++++++++++++++++++++")
+        for i in row:
+            obans=answersheet.objects.get(id=i[0])
+            ob=staff_allocation()
+            ob.staff_id=obstaff
+            ob.answersheet_id=obans
+            ob.datetime=datetime.today()
+            ob.score='0'
+            ob.status='pending'
+            ob.save()
+    return HttpResponse('''<script>alert("allocated");window.location='/allocstf'</script> ''')
 
 
 def staffaloc(request):
@@ -442,21 +496,19 @@ def staffaloc(request):
 
     dob.save()
 
-    return HttpResponse('''<script>alert("subject added");window.location='/view_subject'</script> ''')
+    return HttpResponse('''<script>alert("subject added");window.location='/'</script> ''')
 
 
 def reqansbtn(request):
-    subject = request.POST['select']
-
+    subjects = request.POST['select']
     ob = request_answersheet()
     ob.datetime = datetime.today()
-    ob.subject = subject
     ob.status = "pending"
-
+    ob.answersheet_id = answersheet.objects.get(id=subjects)
     ob.student_id = student.objects.get(lid_id=request.session['lid'])
     ob.save()
 
-    return HttpResponse('''<script>alert("reques successs");window.location='/view_stdcomplaint'</script> ''')
+    return HttpResponse('''<script>alert("reques successs");window.location='/request_ans'</script> ''')
 
 
 

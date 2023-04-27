@@ -19,7 +19,8 @@
         </label></td>
       </tr>
       <tr><td width="86">course </td>
-       <td><select name="select" id="crs">
+       <td><select name="select" id="crs" required>
+           <option value="">Select</option>
             {% for i in v %}
             <option value="{{i.id}}">{{i.course_name}}</option>
             {% endfor %}
@@ -27,15 +28,15 @@
 
       <tr><td width="86">student name </td>
 
-      <td><select name="select" id="stud">
+      <td><select name="select1" id="stud">
 
       </select></td></tr>
       <tr>
-        <td width="86">subject name </td>
+        <td width="86">exam </td>
 
-        <td><select name="select">
+        <td><select name="select3">
             {% for i in val1 %}
-            <option value="{{i.id}}">{{i.subject}} - {{i.course_id.course_name}}</option>
+            <option value="{{i.id}}">{{i.subject_id.subjects}}</option>
             {% endfor %}
       </select></td>
       </tr>

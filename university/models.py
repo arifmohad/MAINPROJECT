@@ -33,7 +33,7 @@ class course(models.Model):
 
 class subject(models.Model):
     course_id=models.ForeignKey(course,on_delete=models.CASCADE)
-    subject=models.CharField(max_length=100)
+    subjects=models.CharField(max_length=100)
     semester=models.IntegerField()   
 
 
@@ -63,10 +63,10 @@ class staff(models.Model):
     place=models.CharField(max_length=100)
     post=models.CharField(max_length=100)
     phone=models.BigIntegerField()
-    email=models.CharField(max_length=100) 
+    email=models.CharField(max_length=100)
 
 
-  
+
 
 
 class exam(models.Model):
@@ -75,10 +75,11 @@ class exam(models.Model):
     time=models.TimeField()
 
 class answersheet(models.Model):
-    student_id=models.ForeignKey(student,on_delete=models.CASCADE)
-    subject_id=models.ForeignKey(subject,on_delete=models.CASCADE)
-    answerpapper=models.FileField()
-    date=models.DateField()
+    student_id = models.ForeignKey(student, on_delete=models.CASCADE)
+    exam_id = models.ForeignKey(exam,on_delete=models.CASCADE)
+    answerpapper = models.FileField()
+    date = models.DateField()
+
 
 
 class staff_allocation(models.Model):
@@ -103,8 +104,8 @@ class complaint(models.Model):
 
 
 class request_answersheet(models.Model):
-    answersheet_id=models.ForeignKey(answersheet,on_delete=models.CASCADE)
     student_id=models.ForeignKey(student,on_delete=models.CASCADE)
+    answersheet_id=models.ForeignKey(answersheet,on_delete=models.CASCADE)
     datetime=models.DateField()
     status=models.CharField(max_length=100)
 

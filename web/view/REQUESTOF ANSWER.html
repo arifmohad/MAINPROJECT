@@ -30,7 +30,7 @@
         <td width="242"><label>
           <select name="select">
             {% for i in val %}
-            <option value="{{i.id}}">{{i.subject}}-{{i.course_id.course_name}}</option>
+            <option value="{{i.id}}">{{i.exam_id.subject_id.subjects}}-{{i.exam_id.subject_id.course_id.course_name}}</option>
             {% endfor %}
           </select>
        </tr>
