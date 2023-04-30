@@ -109,17 +109,18 @@ class request_answersheet(models.Model):
     datetime=models.DateField()
     status=models.CharField(max_length=100)
 
-class result(models.Model):
-    student_id=models.ForeignKey(student,on_delete=models.CASCADE)
-    exam_id=models.ForeignKey(exam,on_delete=models.CASCADE)
-    dept=models.CharField(max_length=100)
-
 
 class revaluation(models.Model):
-    result_id=models.ForeignKey(result,on_delete=models.CASCADE)
+    answersheet_id=models.ForeignKey(answersheet,on_delete=models.CASCADE)
     datetime=models.DateField()
     status=models.CharField(max_length=100)
 
+
+class stafrevalallocation(models.Model):
+    revaluation_id=models.ForeignKey(revaluation,on_delete=models.CASCADE)
+    staff_id=models.ForeignKey(staff,on_delete=models.CASCADE)
+    datetime = models.DateField()
+    status = models.CharField(max_length=100)
 
 
 

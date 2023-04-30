@@ -5,7 +5,8 @@ from university import views
 urlpatterns=[
     path('',views.main,name="main"),
     path('logn', views.logn, name="logn"),
-    path('allocatestaff',views.allocatestaff,name="allocatestaff"),
+    path('allocatestaff/<int:id>',views.allocatestaff,name="allocatestaff"),
+    path('allocatestaffbtn',views.allocatestaffbtn,name="allocatestaffbtn"),
     path('clgregist',views.clgregist,name="clgregist"),
     path('studentregist',views.studentregist,name="studentregist"),
     path('staffregist',views.staffregist,name="staffregist"),
@@ -37,6 +38,7 @@ urlpatterns=[
     path('view_ansrequest', views.view_ansrequest, name="view_ansrequest"),
     path('admin_staffaloc', views.admin_staffaloc, name="admin_staffaloc"),
     path('request_ansadd', views.request_ansadd, name="request_ansadd"),
+    path('stfwork', views.stfwork, name="stfwork"),
 
     path('clgreg',views.clgreg,name="clgreg"),
     path('stfreg',views.stfreg,name="stfreg"),
@@ -56,13 +58,22 @@ urlpatterns=[
     path('view_adminexam', views.view_adminexam, name="view_adminexam"),
     path('staffaloc', views.staffaloc, name="staffaloc"),
     path('reqansbtn', views.reqansbtn, name="reqansbtn"),
+    path('user_pay_proceed/<int:id>', views.user_pay_proceed, name="user_pay_proceed"),
+    path('clgresult', views.clgresult, name="clgresult"),
+    path('revalallocatestaff', views.revalallocatestaff, name="revalallocatestaff"),
+    path('revalallocstf/<int:id>', views.revalallocstf, name="revalallocstf"),
+    path('admin_revalstaffaloc', views.admin_revalstaffaloc, name="admin_revalstaffaloc"),
+    path('stfrevwork', views.stfrevwork, name="stfrevwork"),
+    path('revallocatestaffbtn', views.revallocatestaffbtn, name="revallocatestaffbtn"),
+    path('revallocatestaff/<int:id>', views.revallocatestaff, name="revallocatestaff"),
 
 
     path('admin',views.admin,name="admin"),
     path('stafpage',views.stafpage,name="stafpage"),
     path('myclg',views.myclg,name="myclg"),
     path('stud',views.stud,name="stud"),
-
-
+    path('user_pay_proceed1',views.user_pay_proceed1,name="user_pay_proceed1"),
+    path('on_payment_success',views.on_payment_success,name="on_payment_success"),
+    path('logout',views.logout, name="logout"),
 
 ]

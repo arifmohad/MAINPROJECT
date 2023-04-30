@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<form id="form1" name="form1" method="post" action="">
+<form id="form1" name="form1" method="post" action="{% url 'allocatestaffbtn' %}">
   <div align="center">
     <table width="273" border="1">
       <tr>
@@ -15,25 +15,14 @@
       <tr>
         <td width="90">Score</td>
         <td width="173"><label>
-          <input type="text" name="Score" />
-        </label></td>
-      </tr>
-      <tr>
-        <td>Time</td>
-        <td><label>
-          <input type="text" name="Time" />
-        </label></td>
-      </tr>
-      <tr>
-        <td>Date</td>
-        <td><label>
-          <input type="text" name="Date" />
+          <input type="text" name="Score"/>
         </label></td>
       </tr>
       <tr>
         <td>Status</td>
         <td><label>
-          <input name="Status" type="text" />
+          <select name="Status">
+            <option>finish</option>
         </label></td>
       </tr>
       

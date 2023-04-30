@@ -1,0 +1,36 @@
+{% extends 'collegeindex.html' %}
+{% block body %}
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>login</title>
+</head>
+
+<body>
+<form action="view_result" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <div align="center">
+    <table width="344" border="1">
+      <tr>
+        <td>DATE</td>
+        <td>SEMESTER</td>
+        <td>SUBJECT </td>
+        <td>SCORE</td>
+
+      </tr>
+       {% for i in val  %}
+      <tr>
+        <td width="328">&nbsp;{{ i.datetime }}</td>
+        <td width="328">{{ i.answersheet_id.exam_id.subject_id.semester }}</td>
+        <td width="328">&nbsp;{{ i.answersheet_id.exam_id.subject_id.subjects }}</td>
+         <td width="328">&nbsp;{{ i.score }}</td>
+
+      </tr>
+      {% endfor  %}
+      </table>  
+  </div>
+  <div align="center"></div>
+</form>
+</body>
+{% endblock %}
+
+
+

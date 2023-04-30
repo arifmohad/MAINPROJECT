@@ -1,27 +1,38 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+{% extends 'admin index.html' %}
+{% block body %}
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>login</title>
+<title>Untitled Document</title>
 </head>
 
 <body>
-<form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
-  <div align="center">
-    <table width="344" border="1">
-      <tr>
-        <td colspan="2">NAME</td>
-        <td>COLLEGE</td>
-        <td>SUBJECT</td>
-      </tr>
-      <tr>
-        <td width="328" colspan="2">&nbsp;</td>
-        <td width="328">&nbsp;</td>
-        <td width="328">&nbsp;</td>
-      </tr>
-      </table>  
-  </div>
-  <div align="center"></div>
+<form id="form1" name="form1" method="post" action="allocatestaff" enctype="multipart/form-data">
+  <table width="446" border="1">
+
+    <tr>
+       <td width="105">DATE</td>
+      <td width="105">STAFF NAME</td>
+      <td width="105">COLLEGE NAME</td>
+      <td width="105">SUBJECT NAME</td>
+        <td width="105">answersheet</td>
+        <td width="105">status</td>
+         <td width="105">score</td>
+
+    </tr>
+      {% for i in val  %}
+    <tr>
+      <td>&nbsp;{{ i.datetime }} </td>
+      <td> {{ i.staff_id.name }} </td>
+      <td> {{ i.staff_id.college_id.college_name }} </td>
+      <td> {{ i.answersheet_id.exam_id.subject_id.subjects }} </td>
+      <td> {{ i.answersheet_id.answerpapper }}</td>
+        <td> {{ i.status }} </td>
+         <td> {{ i.score }} </td>
+
+
+
+      {% endfor  %}
+  </table>
 </form>
 </body>
-</html>
+{% endblock %}

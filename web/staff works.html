@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="allocatestaff" enctype="multipart/form-data">
+  <table width="446" border="1">
+
+    <tr>
+      <td width="105">SUBJECT NAME</td>
+        <td width="105">answersheet</td>
+        <td width="105">status</td>
+         <td width="105">score</td>
+      <td width="105">DATE</td>
+    </tr>
+      {% for i in val  %}
+    <tr>
+      <td> {{ i.answersheet_id.exam_id.subject_id.subjects }} </td>
+      <td> <a href="{{ i.answersheet_id.answerpapper.url }}" download > download</a> </td>
+        <td> {{ i.status }} </td>
+         <td> {{ i.score }} </td>
+      <td>&nbsp;{{ i.datetime }} </td>
+
+       <td colspan="2"><label>
+          <div align="center">
+              {% if i.status == 'pending' %}
+            <a href="{% url 'allocatestaff' id=i.id %}">update</a>
+              {% else %}
+              updated
+              {% endif %}
+            </div>
+        </label></td>
+    </tr>
+      {% endfor  %}
+  </table>
+</form>
+</body>
+</html>
