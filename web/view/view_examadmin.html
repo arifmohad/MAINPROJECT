@@ -4,11 +4,48 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>login</title>
 </head>
+<style>
 
+
+
+     .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1em;
+    font-family: sans-serif;
+    min-width: 600px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+    .styled-table thead tr {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    text-align: left;
+}
+    .styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+    .styled-table tbody tr {
+    border-bottom: 2px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #0a0a0a;
+}
+    .styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #0a0a0a;
+}
+</style>
 <body>
 <form action="examschedule" method="post" enctype="multipart/form-data" name="form1" id="form1">
   <div align="center">
-    <table width="344" border="1">
+    <table width="344" border="1" class="styled-table">
+      <thead>
       <tr>
         <td width="328" colspan="2">SUBJECT</td>
         <td width="328" colspan="2">COURSE</td>
@@ -18,20 +55,23 @@
 
 
       </tr>
+      </thead>
        {% for i in val %}
-      <tr>
+       <tbody>
+      <tr class="active-row">
         <td width="328" colspan="2">{{ i.subject_id.subjects }}</td>
         <td width="328" colspan="2">{{ i.subject_id.course_id.course_name }}</td>
         <td width="328" colspan="2">{{ i.subject_id.semester }}</td>
         <td width="328" colspan="2">&nbsp;{{ i.date }}</td>
         <td width="328" colspan="2">{{ i.time }}</td>
       </tr>
+       </tbody>
        {% endfor %}
 
-         <tr>
+         <tr><td></td><td></td><td></td>
         <td colspan="2"><label>
           <div align="center">
-            <input type="submit" name="Submit" value="schedule exam" />
+            <input type="submit" name="Submit" value="schedule exam" class="btn btn-primary" />
             </div>
         </label></td>
       </tr>

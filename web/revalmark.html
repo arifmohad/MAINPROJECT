@@ -4,24 +4,77 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>login</title>
 </head>
+<style>
 
+     .styled-table {
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+    .styled-table thead tr {
+    background-color: #24b1c9;
+    color: #ffffff;
+    text-align: left;
+}
+    .styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+    .styled-table tbody tr {
+    border-bottom: 2px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    {#border: 1px solid #0a0a0a;#}
+}
+    .styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #0a0a0a;
+}
+        .btn{
+  width: 100%;
+  {#background: none;#}
+  border: 2px solid black;
+  color: black;
+  padding: 7px;
+  font-size: 20px;
+  {#cursor: pointer;#}
+  margin: 12px 0;
+}
+    .textbox{
+  width: 100%;
+  overflow: hidden;
+  font-size: 20px;
+  padding: 7px 0;
+  margin: 7px 0;
+  border: 1px solid black;
+}
+
+</style>
 <body>
 <form id="form1" name="form1" method="post" action="{% url 'revallocatestaffbtn' %}">
   <div align="center">
-    <table width="273" border="1">
+    <table width="273" cellspacing="5" cellpadding="5" class="styled-table"><tbody>
       <tr>
         <td colspan="2"><div align="center">ALLOCATION</div></td>
       </tr>
       <tr>
         <td width="90">Score</td>
         <td width="173"><label>
-          <input type="text" name="Score"/>
+          <input type="text" name="Score" required class="textbox"/>
         </label></td>
       </tr>
       <tr>
         <td>Status</td>
         <td><label>
-          <select name="Status">
+          <select name="Status" required class="textbox">
             <option>finish</option>
         </label></td>
       </tr>
@@ -30,10 +83,10 @@
       <tr>
         <td colspan="2"><label>
           <div align="center">
-            <input type="submit" name="Submit" value="Submit" />
+            <input type="submit" name="Submit" value="Submit" class="btn"/>
             </div>
         </label></td>
-      </tr>
+      </tr></tbody>
       </table>
   </div>
   <div align="center"></div>

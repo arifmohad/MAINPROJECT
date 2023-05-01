@@ -4,18 +4,71 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>login</title>
 </head>
+<style>
 
+     .styled-table {
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+    .styled-table thead tr {
+    background-color: #24b1c9;
+    color: #ffffff;
+    text-align: left;
+}
+    .styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+    .styled-table tbody tr {
+    border-bottom: 2px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    {#border: 1px solid #0a0a0a;#}
+}
+    .styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #0a0a0a;
+}
+        .btn{
+  width: 200%;
+  {#background: none;#}
+  border: 2px solid black;
+  color: black;
+  padding: 7px;
+  font-size: 20px;
+  {#cursor: pointer;#}
+  margin: 12px 0;
+}
+    .textbox{
+  width: 100%;
+  overflow: hidden;
+  font-size: 20px;
+  padding: 7px 0;
+  margin: 7px 0;
+  border: 1px solid black;
+}
+
+</style>
 <body>
 <form action="exambtn" method="post" enctype="multipart/form-data" name="form1" id="form1">
   <div align="center">
-    <table width="344" border="1">
+    <table width="344" cellspacing="5" cellpadding="5" class="styled-table"><tbody>
       <tr>
         <td colspan="2"><div align="center">EXAM</div></td>
       </tr>
         <tr>
         <td width="86">SUBJECT</td>
         <td width="242"><label>
-          <select name="select">
+          <select name="select" required class="textbox">
             {% for i in val %}
             <option value="{{i.id}}">{{i.subjects}}-{{i.course_id.course_name}}</option>
             {% endfor %}
@@ -25,22 +78,23 @@
       <tr>
         <td width="86">Date</td>
         <td width="242"><label>
-          <input type="date" name="date" />
+          <input type="date" name="date" required class="textbox"/>
 </label></td>
       </tr>
       <tr>
         <td>Time</td>
         <td><label>
-          <input type="time" name="time" />
+          <input type="time" name="time" required class="textbox"/>
         </label></td>
       </tr>
-      <tr>
+       <tr><td></td>
         <td colspan="2"><label>
           <div align="center">
-            <input type="submit" name="Submit" value="Submit" />
+            <input type="submit" name="Submit" value="Submit" class="btn"/>
             </div>
         </label></td>
       </tr>
+      </tbody>
       </table>  
   </div>
   <div align="center"></div>

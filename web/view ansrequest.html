@@ -4,20 +4,59 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Untitled Document</title>
 </head>
+<style>
 
+
+
+     .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1em;
+    font-family: sans-serif;
+    min-width: 600px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+    .styled-table thead tr {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    text-align: left;
+}
+    .styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+    .styled-table tbody tr {
+    border-bottom: 2px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #0a0a0a;
+}
+    .styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #0a0a0a;
+}
+</style>
 <body>
 <form id="form1" name="form1" method="post" action="request_ansadd">
-  <table width="446" border="1">
-
+  <table width="446" border="1" class="styled-table">
+<thead>
     <tr>
       <td width="103">NAME</td>
       <td width="105">SUBJECT NAME</td>
         <td width="105">STATUS</td>
       <td width="105">DATE</td>
       <td width="105">&nbsp;</td>
+    <td></td>
     </tr>
+</thead>
       {% for i in val  %}
-    <tr>
+    <tbody>
+    <tr class="active-row">
       <td> {{ i.student_id.name }} </td>
       <td> {{ i.answersheet_id.exam_id.subject_id.subjects }} </td>
         <td> {{ i.status }} </td>
@@ -26,6 +65,7 @@
           <td><p><a href="reject/{{i.id}}">reject</a></p>
       </td>
     </tr>
+    </tbody>
       {% endfor  %}
   </table>
 </form>

@@ -239,6 +239,16 @@ def searchstud(request):
 
 
 @login_required(login_url='/')
+def searchresult(request):
+    subject_id = request.POST['select']
+    obj = course.objects.all()
+    ob1=staff_allocation.objects.filter(answersheet_id__exam_id__subject_id__course_id__id=subject_id,answersheet_id__student_id__course_id__department_id__clgid__lid__id=request.session['lid'],status='finish')
+
+
+    return render(request, "view/clgviewresult.html",{'val':ob1,'val1':obj})
+
+
+@login_required(login_url='/')
 def view_department(request):
     ob = department.objects.all()
     return render(request,"view/DEPARTMENT.html",{'val':ob})
@@ -274,8 +284,9 @@ def view_complaint(request):
 
 @login_required(login_url='/')
 def clgresult(request):
-    ob = staff_allocation.objects.filter(staff_id__college_id__lid__id=request.session['lid'])
-    return render(request,"view/clgviewresult.html",{'val':ob})
+    obj=course.objects.all()
+    ob = staff_allocation.objects.filter(answersheet_id__student_id__course_id__department_id__clgid__lid__id=request.session['lid'],status='finish')
+    return render(request,"view/clgviewresult.html",{'val':ob,'val1':obj})
 
 @login_required(login_url='/')
 def view_stdcomplaint(request):
@@ -665,7 +676,7 @@ def reqansbtn(request):
     return HttpResponse('''<script>alert("reques successs");window.location='/request_ans'</script> ''')
 
 
-
+@login_required(login_url='/')
 def user_pay_proceed1(request):
     id=request.session['aid']
     ob=revaluation()
@@ -675,7 +686,7 @@ def user_pay_proceed1(request):
     ob.save()
     return HttpResponse('''<script>alert("reques successs");window.location='/view_result'</script> ''')
 
-
+@login_required(login_url='/')
 def user_pay_proceed(request,id):
     request.session['aid']=id
     import razorpay
@@ -691,15 +702,11 @@ def user_pay_proceed(request,id):
 
 
 
-def on_payment_success(request):
-    print("okkkkkkkkkkkkkk")
-
-
-    return '''<script>alert("Success! Thank you for your Contribution");window.location="view_result"</script>'''
 
 
 
 
+@login_required(login_url='/')
 def revalallocatestaff(request):
     obj = exam.objects.all()
     result=[]
@@ -716,7 +723,7 @@ def revalallocatestaff(request):
 
     return render(request,"revalallocation.html",{'val':ob,'val1':result})
 
-
+@login_required(login_url='/')
 def revalallocstf(request,id):
     request.session['eid']=id
     ob = staff.objects.all()
@@ -724,10 +731,20 @@ def revalallocstf(request,id):
 
 
 
+@login_required(login_url='/')
+def clgprofile(request):
+    ob = college.objects.filter(lid__id=request.session['lid'])
+    return render(request,"view/clg profile.html",{'val':ob})
 
+@login_required(login_url='/')
+def stfprofile(request):
+    ob = staff.objects.filter(lid__id=request.session['lid'])
+    return render(request,"view/stf profile.html",{'val':ob})
 
-
-
+@login_required(login_url='/')
+def stdntprofile(request):
+    ob = student.objects.filter(lid__id=request.session['lid'])
+    return render(request,"view/student profile.html",{'val':ob})
 
 
 

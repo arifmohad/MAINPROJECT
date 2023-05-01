@@ -4,27 +4,73 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Untitled Document</title>
 </head>
+<style>
 
+
+
+     .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1em;
+    font-family: sans-serif;
+    min-width: 600px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+    .styled-table thead tr {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    text-align: left;
+}
+    .styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+    .styled-table tbody tr {
+    border-bottom: 2px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #0a0a0a;
+}
+    .styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #0a0a0a;
+}
+</style>
 <body>
+<center>
 <form id="form1" name="form1" method="post" action="">
-  <table width="446" border="1">
-
+  <table width="446" border="1" class="styled-table">
+ <thead>
     <tr>
       <td width="103">NAME</td>
+      <td width="103">COLLEGE</td>
+      <td width="103">DEPARTMENT</td>
       <td width="105">COMPLAINT</td>
       <td width="105">DATE</td>
       <td width="105">&nbsp;</td>
-    </tr>
-      {% for i in val  %}
-    <tr>
+    </tr >
+    </thead>
+       {% for i in val  %}
+        <tbody>
+
+    <tr class="active-row">
       <td> {{ i.student_id.name }} </td>
+      <td> {{ i.student_id.course_id.department_id.clgid.college_name }} </td>
+      <td> {{ i.student_id.course_id.department_id.dept }} </td>
       <td> {{ i.postcomplaint }} </td>
       <td>&nbsp;{{ i.datetime }} </td>
-      <td><p><a href="reply/{{i.id}}">REPLY</a></p>
+      <td><p><a href="reply/{{i.id}}" class="btn btn-primary">REPLY</a></p>
       </td>
     </tr>
+        </tbody>
       {% endfor  %}
   </table>
 </form>
+  </center>
 </body>
 {% endblock %}

@@ -4,20 +4,59 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Untitled Document</title>
 </head>
+<style>
 
+
+
+     .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1em;
+    font-family: sans-serif;
+    min-width: 600px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+    .styled-table thead tr {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    text-align: left;
+}
+    .styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+    .styled-table tbody tr {
+    border-bottom: 2px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #0a0a0a;
+}
+    .styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #0a0a0a;
+}
+</style>
 <body>
 <form id="form1" name="form1" method="post" action="allocatestaff" enctype="multipart/form-data">
-  <table width="446" border="1">
-
+  <table width="446" border="1" class="styled-table">
+<thead>
     <tr>
       <td width="105">SUBJECT NAME</td>
         <td width="105">answersheet</td>
         <td width="105">status</td>
          <td width="105">score</td>
       <td width="105">DATE</td>
+        <td></td>
     </tr>
+</thead>
       {% for i in val  %}
-    <tr>
+    <tbody>
+    <tr class="active-row">
       <td> {{ i.answersheet_id.exam_id.subject_id.subjects }} </td>
       <td> <a href="{{ i.answersheet_id.answerpapper.url }}" download > download</a> </td>
         <td> {{ i.status }} </td>
@@ -34,6 +73,7 @@
             </div>
         </label></td>
     </tr>
+    </tbody>
       {% endfor  %}
   </table>
 </form>

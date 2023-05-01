@@ -70,8 +70,10 @@ urlpatterns=[
     path('revallocatestaff/<int:id>', views.revallocatestaff, name="revallocatestaff"),
     path('view_examstaff', views.view_examstaff, name="view_examstaff"),
     path('view_examstudent', views.view_examstudent, name="view_examstudent"),
-
-
+    path('clgprofile', views.clgprofile, name="clgprofile"),
+    path('stfprofile', views.stfprofile, name="stfprofile"),
+    path('stdntprofile', views.stdntprofile, name="stdntprofile"),
+    path('searchresult', views.searchresult, name="searchresult"),
 
 
     path('admin',views.admin,name="admin"),
@@ -79,7 +81,7 @@ urlpatterns=[
     path('myclg',views.myclg,name="myclg"),
     path('stud',views.stud,name="stud"),
     path('user_pay_proceed1',views.user_pay_proceed1,name="user_pay_proceed1"),
-    path('on_payment_success',views.on_payment_success,name="on_payment_success"),
+    # path('on_payment_success',views.on_payment_success,name="on_payment_success"),
     path('logout',views.logout, name="logout"),
 
 ]
