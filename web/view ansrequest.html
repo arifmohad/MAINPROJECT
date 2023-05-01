@@ -19,7 +19,7 @@
       {% for i in val  %}
     <tr>
       <td> {{ i.student_id.name }} </td>
-      <td> {{ i.subject_id.subjects }} </td>
+      <td> {{ i.answersheet_id.exam_id.subject_id.subjects }} </td>
         <td> {{ i.status }} </td>
       <td>&nbsp;{{ i.datetime }} </td>
       <td><p><a href="approve/{{i.id}}">approve</a></p>

@@ -53,6 +53,8 @@ urlpatterns=[
     path('subjbtn', views.subjbtn, name="subjbtn"),
     path('complaintbtn', views.complaintbtn, name="complaintbtn"),
     path('search', views.search, name="search"),
+    path('searchstaff', views.searchstaff, name="searchstaff"),
+    path('searchstud', views.searchstud, name="searchstud"),
     path('updanswer', views.updanswer, name="updanswer"),
     path('searchcrs', views.searchcrs, name="searchcrs"),
     path('view_adminexam', views.view_adminexam, name="view_adminexam"),
@@ -66,6 +68,10 @@ urlpatterns=[
     path('stfrevwork', views.stfrevwork, name="stfrevwork"),
     path('revallocatestaffbtn', views.revallocatestaffbtn, name="revallocatestaffbtn"),
     path('revallocatestaff/<int:id>', views.revallocatestaff, name="revallocatestaff"),
+    path('view_examstaff', views.view_examstaff, name="view_examstaff"),
+    path('view_examstudent', views.view_examstudent, name="view_examstudent"),
+
+
 
 
     path('admin',views.admin,name="admin"),

@@ -94,6 +94,8 @@ def addcourse(request):
 def request_ans(request):
     ob = request_answersheet.objects.filter(student_id__lid__id=request.session['lid'])
     return render(request,"stdreqanswer.html",{'val':ob})
+
+
 @login_required(login_url='/')
 def request_ansadd(request):
     ob = answersheet.objects.filter(student_id__lid__id=request.session['lid'])
@@ -105,7 +107,8 @@ def addresult(request):
 
 @login_required(login_url='/')
 def req_revaluation(request):
-    return render(request,"Revaluation.html")
+    ob = stafrevalallocation.objects.filter(revaluation_id__answersheet_id__student_id__lid__id=request.session['lid'])
+    return render(request,"Revaluation.html",{'val':ob})
 
 @login_required(login_url='/')
 def addsubject(request):
@@ -176,12 +179,29 @@ def view_staff(request):
 def view_student(request):
     ob = course.objects.all()
     return render(request,"view/STUDENT.html",{'val':ob})
+
+
 @login_required(login_url='/')
 def view_exam(request):
     obj= course.objects.all()
 
 
     return render(request,"view/EXAM.html",{'val1':obj})
+
+@login_required(login_url='/')
+def view_examstaff(request):
+    obj= course.objects.all()
+
+
+    return render(request,"view/staffviewexam.html",{'val1':obj})
+
+
+@login_required(login_url='/')
+def view_examstudent(request):
+    obj= course.objects.all()
+
+
+    return render(request,"view/view exam student.html",{'val1':obj})
 
 @login_required(login_url='/')
 def view_adminexam(request):
@@ -198,6 +218,25 @@ def search(request):
     ob1=exam.objects.filter(subject_id__course_id__id=subject_id)
 
     return render(request, "view/EXAM.html",{'val':ob1,'val1':obj})
+
+@login_required(login_url='/')
+def searchstaff(request):
+    subject_id = request.POST['select']
+    obj = course.objects.all()
+    ob1=exam.objects.filter(subject_id__course_id__id=subject_id)
+
+
+    return render(request, "view/staffviewexam.html",{'val':ob1,'val1':obj})
+
+@login_required(login_url='/')
+def searchstud(request):
+    subject_id = request.POST['select']
+    obj = course.objects.all()
+    ob1=exam.objects.filter(subject_id__course_id__id=subject_id)
+
+
+    return render(request, "view/view exam student.html",{'val':ob1,'val1':obj})
+
 
 @login_required(login_url='/')
 def view_department(request):
@@ -253,18 +292,26 @@ def stfrevwork(request):
     ob = stafrevalallocation.objects.filter(staff_id__lid__id=request.session['lid'])
     return render(request,"staffrevalworks.html",{'val':ob})
 
+
+
+
 @login_required(login_url='/')
 def admin(request):
     return render(request,"admin index.html")
 @login_required(login_url='/')
 def stafpage(request):
-    return render(request,"staff.html")
+    return render(request,"staffindex.html")
 @login_required(login_url='/')
 def myclg(request):
     return render(request,"collegeindex.html")
 @login_required(login_url='/')
 def stud(request):
-    return render(request,"student.html")
+    return render(request,"student index.html")
+
+
+
+
+
 
 @login_required(login_url='/')
 def clgreg(request):
