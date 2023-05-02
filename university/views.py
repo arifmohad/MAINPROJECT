@@ -1,7 +1,12 @@
+import base64
+
+import os
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render
+
+from university.AESCLASS import encrypt, decrypt
 from university.models import *
 from django.http import HttpResponse, JsonResponse, request
 from django.shortcuts import redirect
@@ -62,7 +67,10 @@ def clgregist(request):
 
 @login_required(login_url='/')
 def studentregist(request):
-    ob = course.objects.all()
+    # department_id
+    ob=staff.objects.get(lid__id=request.session['lid'])
+    did=ob.department_id.id
+    ob = course.objects.filter(department_id__id=did)
     return render(request,"student register.html",{'val':ob})
 
 
@@ -121,7 +129,7 @@ def searchcrs(request):
     sob = student.objects.filter(course_id__department_id__clgid__lid__id=request.session['lid'],course_id__id=dep)
     data = []
     for r in sob:
-        row = {"id": r.id, "name": r.name}
+        row = {"id": r.id, "name": r.name,"rno":r.regno}
         data.append(row)
     res = {"res": data}
     print(res)
@@ -177,7 +185,7 @@ def view_staff(request):
     return render(request,"view/STAFF.html")
 @login_required(login_url='/')
 def view_student(request):
-    ob = course.objects.all()
+    ob = student.objects.filter(staff_id__lid__id=request.session['lid'])
     return render(request,"view/STUDENT.html",{'val':ob})
 
 
@@ -270,7 +278,6 @@ def view_answersheet(request):
 @login_required(login_url='/')
 def view_result(request):
     ob = staff_allocation.objects.filter(answersheet_id__student_id__lid__id=request.session['lid'],status='finish')
-
     return render(request,"view/RESULT.html",{'val':ob})
 
 @login_required(login_url='/')
@@ -289,6 +296,12 @@ def clgresult(request):
     return render(request,"view/clgviewresult.html",{'val':ob,'val1':obj})
 
 @login_required(login_url='/')
+def stfresult(request):
+    obj=course.objects.all()
+    ob = staff_allocation.objects.filter(answersheet_id__student_id__staff_id__lid__id=request.session['lid'],status='finish')
+    return render(request,"view/stfviewresult.html",{'val':ob,'val1':obj})
+
+@login_required(login_url='/')
 def view_stdcomplaint(request):
     ob = complaint.objects.filter(student_id__lid__id=request.session['lid'])
     return render(request,"view/view stdcomplaint.html",{'val':ob})
@@ -296,6 +309,7 @@ def view_stdcomplaint(request):
 @login_required(login_url='/')
 def stfwork(request):
     ob = staff_allocation.objects.filter(staff_id__lid__id=request.session['lid'])
+
     return render(request,"staff works.html",{'val':ob})
 
 @login_required(login_url='/')
@@ -472,6 +486,7 @@ def stdreg(request):
     sob.pin = pin
     sob.phone = phone
     sob.email = email
+    sob.staff_id = staff.objects.get(lid__id=request.session['lid'])
     sob.course_id = course.objects.get(id=course_id)
     sob.lid = ob
     sob.save()
@@ -537,9 +552,13 @@ def subjbtn(request):
 def delete(request,id):
     ob=subject.objects.get(id=id)
     ob.delete()
-
     return HttpResponse('''<script>alert("subject deleted");window.location='/view_subject'</script> ''')
 
+def deletestudent(request,id):
+    ob=student.objects.get(id=id)
+    ob.delete()
+
+    return HttpResponse('''<script>alert("student deleted");window.location='/view_student'</script> ''')
 
 @login_required(login_url='/')
 def complaintbtn(request):
@@ -582,23 +601,23 @@ def compreply(request):
 
     ob = complaint.objects.get(id=request.session['cid'])
     ob.replay=replay
-
     ob.save()
-
     return HttpResponse('''<script>alert("send Successfull");window.location='/view_complaint'</script> ''')
 
 @login_required(login_url='/')
 def updanswer(request):
     answerpapper = request.FILES['file']
+    key = "qsdrt"
+    en = encrypt(str(answerpapper.read()), key)
+    print("123456", en)
     ans=FileSystemStorage()
     a=ans.save(answerpapper.name,answerpapper)
     student_id = request.POST['select1']
     exam_id = request.POST['select3']
-
     ob = answersheet()
     ob.student_id = student.objects.get(id=student_id)
     ob.exam_id = exam.objects.get(id=exam_id)
-    ob.answerpapper = a
+    ob.answerpapper = str(en)
     ob.date=datetime.today()
     ob.save()
     return HttpResponse('''<script>alert("send Successfull");window.location='/uploadanswer'</script> ''')
@@ -746,12 +765,13 @@ def stdntprofile(request):
     ob = student.objects.filter(lid__id=request.session['lid'])
     return render(request,"view/student profile.html",{'val':ob})
 
-
-
-
-
-
 def logout(request):
+    auth.logout(request)
+    return HttpResponse('''<script>alert("log out");window.location='/'</script> ''')
+
+
+
+def paschange(request):
     auth.logout(request)
     return HttpResponse('''<script>alert("log out");window.location='/'</script> ''')
 

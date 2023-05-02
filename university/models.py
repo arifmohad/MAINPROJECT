@@ -39,19 +39,7 @@ class subject(models.Model):
 
 
 
-class student(models.Model):
-    lid=models.ForeignKey(login,on_delete=models.CASCADE)
-    course_id=models.ForeignKey(course,on_delete=models.CASCADE)
-    name=models.CharField(max_length=100)
-    regno = models.CharField(max_length=100)
-    father_name = models.CharField(max_length=100)
-    mother_name = models.CharField(max_length=100)
-    gender=models.CharField(max_length=100)
-    place=models.CharField(max_length=100)
-    post=models.CharField(max_length=100)
-    pin=models.IntegerField()
-    phone=models.BigIntegerField()
-    email=models.CharField(max_length=100)
+
 
 
 class staff(models.Model):
@@ -66,6 +54,20 @@ class staff(models.Model):
     email=models.CharField(max_length=100)
 
 
+class student(models.Model):
+    lid=models.ForeignKey(login,on_delete=models.CASCADE)
+    course_id=models.ForeignKey(course,on_delete=models.CASCADE)
+    staff_id = models.ForeignKey(staff, on_delete=models.CASCADE)
+    name=models.CharField(max_length=100)
+    regno = models.CharField(max_length=100)
+    father_name = models.CharField(max_length=100)
+    mother_name = models.CharField(max_length=100)
+    gender=models.CharField(max_length=100)
+    place=models.CharField(max_length=100)
+    post=models.CharField(max_length=100)
+    pin=models.IntegerField()
+    phone=models.BigIntegerField()
+    email=models.CharField(max_length=100)
 
 
 

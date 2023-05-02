@@ -1,4 +1,4 @@
-{% extends 'student index.html' %}
+{% extends 'collegeindex.html' %}
 {% block body %}
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -42,35 +42,37 @@
 }
 </style>
 <body>
-<form action="view_result" method="post" enctype="multipart/form-data" name="form1" id="form1">
+<form action="searchresult" method="post" enctype="multipart/form-data" name="form1" id="form1">
   <div align="center">
     <table width="344" border="1" class="styled-table">
-      <thead>
+        <thead>
       <tr>
         <td>DATE</td>
+         <td>NAME</td>
+         <td>COURSE</td>
+         <td>DEPARTMENT</td>
         <td>SEMESTER</td>
         <td>SUBJECT </td>
         <td>SCORE</td>
-        <td></td>
 
       </tr>
       </thead>
        {% for i in val  %}
-      <tbody>
+        <tbody>
       <tr class="active-row">
         <td width="328">&nbsp;{{ i.datetime }}</td>
+        <td width="328">&nbsp;{{ i.answersheet_id.student_id.name }}</td>
+        <td width="328">&nbsp;{{ i.answersheet_id.student_id.course_id.course_name }}</td>
+        <td width="328">&nbsp;{{ i.answersheet_id.student_id.course_id.department_id.dept }}</td>
         <td width="328">{{ i.answersheet_id.exam_id.subject_id.semester }}</td>
         <td width="328">&nbsp;{{ i.answersheet_id.exam_id.subject_id.subjects }}</td>
          <td width="328">&nbsp;{{ i.score }}</td>
-        <td colspan="2">
-        <td><p><a href="user_pay_proceed/{{i.answersheet_id.id}}">Revaluation</a></p></td>
 
       </tr>
       </tbody>
-
       {% endfor  %}
-      </table>
-    </div>
+      </table>  
+  </div>
   <div align="center"></div>
 </form>
 </body>

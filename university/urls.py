@@ -33,6 +33,7 @@ urlpatterns=[
     path('view_complaint',views.view_complaint,name="view_complaint"),
     path('view_stdcomplaint',views.view_stdcomplaint,name="view_stdcomplaint"),
     path('delete/<int:id>', views.delete, name="delete"),
+    path('deletestudent/<int:id>', views.deletestudent, name="deletestudent"),
     path('adminallocatestaff', views.adminallocatestaff, name="adminallocatestaff"),
     path('allocstf/<int:id>', views.allocstf, name="allocstf"),
     path('view_ansrequest', views.view_ansrequest, name="view_ansrequest"),
@@ -62,6 +63,7 @@ urlpatterns=[
     path('reqansbtn', views.reqansbtn, name="reqansbtn"),
     path('user_pay_proceed/<int:id>', views.user_pay_proceed, name="user_pay_proceed"),
     path('clgresult', views.clgresult, name="clgresult"),
+    path('stfresult', views.stfresult, name="stfresult"),
     path('revalallocatestaff', views.revalallocatestaff, name="revalallocatestaff"),
     path('revalallocstf/<int:id>', views.revalallocstf, name="revalallocstf"),
     path('admin_revalstaffaloc', views.admin_revalstaffaloc, name="admin_revalstaffaloc"),
@@ -74,6 +76,7 @@ urlpatterns=[
     path('stfprofile', views.stfprofile, name="stfprofile"),
     path('stdntprofile', views.stdntprofile, name="stdntprofile"),
     path('searchresult', views.searchresult, name="searchresult"),
+    path('paschange', views.paschange, name="paschange"),
 
 
     path('admin',views.admin,name="admin"),
