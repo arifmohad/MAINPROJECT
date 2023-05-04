@@ -77,7 +77,11 @@ urlpatterns=[
     path('stdntprofile', views.stdntprofile, name="stdntprofile"),
     path('searchresult', views.searchresult, name="searchresult"),
     path('paschange', views.paschange, name="paschange"),
-
+    path('download<int:id>', views.download, name="download"),
+    path('downloadrev<int:id>', views.downloadrev, name="downloadrev"),
+    path('downloadstd<int:id>', views.downloadstd, name="downloadstd"),
+    path('stdpass', views.stdpass, name="stdpass"),
+    path('stdpasschange', views.stdpasschange, name="stdpasschange"),
 
     path('admin',views.admin,name="admin"),
     path('stafpage',views.stafpage,name="stafpage"),

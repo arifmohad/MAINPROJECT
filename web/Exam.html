@@ -70,7 +70,7 @@
         <td width="242"><label>
           <select name="select" required class="textbox">
             {% for i in val %}
-            <option value="{{i.id}}">{{i.subjects}}-{{i.course_id.course_name}}</option>
+            <option value="{{i.subjects}}">{{i.subjects}}-{{i.course_id__course_name}}</option>
             {% endfor %}
           </select>
       

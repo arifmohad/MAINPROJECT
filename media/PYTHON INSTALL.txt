@@ -1,0 +1,66 @@
+cd C:\Users\John\AppData\Local\Programs\Python\Python36
+python -m pip install --upgrade pip
+cd scripts
+
+==>FLASK
+pip install flask
+
+==>Mysql
+pip install mysqlclient
+
+pip install pymysql
+
+pip install mysql-connector-python
+
+==>Opencv
+
+pip install opencv-python
+
+
+==>SIFT
+
+pip install opencv-python==3.4.2.16
+pip install opencv-contrib-python==3.4.2.16
+
+==>numpy
+pip install numpy
+
+==>bs4
+pip install beautifulsoup4
+
+==>Face Recognition
+pip install https://pypi.python.org/packages/da/06/bd3e241c4eb0a662914b3b4875fc52dd176a9db0d4a2c915ac2ad8800e9e/dlib-19.7.0-cp36-cp36m-win_amd64.whl#md5=b7330a5b2d46420343fbed5df69e6a3f
+pip install face_recognition or pip3 install face_recognition
+
+==>crypto
+pip install winrandom-1.2.1-cp36-cp36m-win_amd64.whl
+pip install pycrypto-2.6.1-cp36-cp36m-win_amd64.whl
+
+==>RSA
+pip install pyqrcode
+
+winrandam
+C:\Users\John\AppData\Local\Programs\Python\Python36\lib\site-packages\Crypto\Random\OSRNG\nt.py 
+import winrandom ==> from . import winrandom
+
+
+==>Tensorflow
+pip install tensorflow
+
+==>sklearn
+pip install scikit-learn
+ 
+==>skimage
+pip install scikit-image(need vc++10)
+
+==>NLTK
+pip install nltk
+
+
+
+
+
+
+
+
+

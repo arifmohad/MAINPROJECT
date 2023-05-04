@@ -61,7 +61,7 @@
       <td> {{ i.answersheet_id.exam_id.subject_id.subjects }} </td>
         <td> {% if i.status == 'approved' %}
 
-          <a href="{{i.answersheet_id.answerpapper.url}}">download</a>
+          <a href="{% url 'downloadstd' id=i.id %}">download</a>
           {% else %}
           {{i.status}}
 

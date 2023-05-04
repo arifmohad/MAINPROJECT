@@ -62,8 +62,8 @@
         <td width="328">{{ i.answersheet_id.exam_id.subject_id.semester }}</td>
         <td width="328">&nbsp;{{ i.answersheet_id.exam_id.subject_id.subjects }}</td>
          <td width="328">&nbsp;{{ i.score }}</td>
-        <td colspan="2">
-        <td><p><a href="user_pay_proceed/{{i.answersheet_id.id}}">Revaluation</a></p></td>
+
+        <td>{% if i.st == "y" %} Revaluation Requested{% else %}<p><a href="user_pay_proceed/{{i.answersheet_id.id}}">Revaluation</a></p>{% endif %}</td>
 
       </tr>
       </tbody>

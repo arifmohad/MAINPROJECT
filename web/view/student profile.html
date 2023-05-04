@@ -41,6 +41,9 @@
         <td width="328">&nbsp;{{ i.email }}</td>
         <td width="328">&nbsp;{{ i.phone }}</td>
       </tr>
+      <tr>
+         <td> <a href="{% url 'stdpass' %}"> change password</a> </td>
+      </tr>
       {% endfor %}
       </table>  
   </div>

@@ -13,7 +13,16 @@ from django.shortcuts import redirect
 from datetime import datetime
 from django.db import connection
 # Create your views here.
+import hashlib
+import boto
+import boto.s3
+import sys
+from boto.s3.key import Key
 
+
+
+AWS_ACCESS_KEY_ID = 'AKIAVTA624LZIZKAIXO3'
+AWS_SECRET_ACCESS_KEY = 'jPUOKXCYy1JyFnLxIyotub+rW+2gVtFe1zgKdH9h'
 
 
 def main(request):
@@ -86,7 +95,8 @@ def addcomplaint(request):
     return render(request,"complaint.html",{'val':ob})
 @login_required(login_url='/')
 def examschedule(request):
-    ob = subject.objects.all()
+    ob = subject.objects.values('subjects','course_id__course_name').distinct()
+    print(ob,"===================")
     return render(request,"Exam.html",{'val':ob})
 @login_required(login_url='/')
 def adddepartment(request):
@@ -116,6 +126,7 @@ def addresult(request):
 @login_required(login_url='/')
 def req_revaluation(request):
     ob = stafrevalallocation.objects.filter(revaluation_id__answersheet_id__student_id__lid__id=request.session['lid'])
+
     return render(request,"Revaluation.html",{'val':ob})
 
 @login_required(login_url='/')
@@ -138,9 +149,9 @@ def searchcrs(request):
 
 @login_required(login_url='/')
 def uploadanswer(request):
-    ob1=course.objects.all()
+    ob1=course.objects.filter(department_id__clgid__lid=request.session['lid'])
     ob = student.objects.all()
-    obj = exam.objects.all()
+    obj = exam.objects.filter(subject_id__course_id__department_id__clgid__lid=request.session['lid'])
     return render(request,"upload answersheet.html",{'val':ob,'val1':obj,'v':ob1})
 @login_required(login_url='/')
 def adminallocatestaff(request):
@@ -278,7 +289,18 @@ def view_answersheet(request):
 @login_required(login_url='/')
 def view_result(request):
     ob = staff_allocation.objects.filter(answersheet_id__student_id__lid__id=request.session['lid'],status='finish')
-    return render(request,"view/RESULT.html",{'val':ob})
+    res=[]
+    for i in ob:
+        obb=revaluation.objects.filter(answersheet_id__id=i.answersheet_id.id)
+        if(len(obb)>0):
+            i.st="y"
+        else:
+            i.st="n"
+        res.append(i)
+    print(res[0].st,"============")
+    print(res,"============")
+    print(res,"============")
+    return render(request,"view/RESULT.html",{'val':res})
 
 @login_required(login_url='/')
 def view_revaluation(request):
@@ -493,18 +515,43 @@ def stdreg(request):
 
     return HttpResponse('''<script>alert("Registration Successfull");window.location='/studentregist'</script> ''')
 
+
+
+def stdpass(request):
+
+    return render(request, "update password.html")
+
+
+@login_required(login_url='/')
+def stdpasschange(request):
+    oldpass = request.POST['oldpass']
+    newpassword = request.POST['password']
+    cnfpassword = request.POST['cpassword']
+    try:
+        ob=login.objects.get(password=oldpass,id=request.session['lid'])
+        if  newpassword == cnfpassword:
+            ob.password=newpassword
+            ob.save()
+            return HttpResponse('''<script>alert("change password");window.location='/stdntprofile'</script> ''')
+        else:
+            return HttpResponse('''<script>alert("mismatch password");window.location='/stdntprofile'</script> ''')
+    except:
+        return HttpResponse('''<script>alert("incorrect old password");window.location='/stdntprofile'</script> ''')
+
+
+
 @login_required(login_url='/')
 def exambtn(request):
     date = request.POST['date']
     time = request.POST['time']
     subject_id=request.POST['select']
-
-    eob = exam()
-    eob.date = date
-    eob.time = time
-    eob.subject_id=subject.objects.get(id=subject_id)
-    eob.save()
-
+    sob=subject.objects.filter(subjects=subject_id)
+    for i in sob:
+        eob = exam()
+        eob.date = date
+        eob.time = time
+        eob.subject_id=subject.objects.get(id=i.id)
+        eob.save()
     return HttpResponse('''<script>alert("exam schedule added");window.location='/view_adminexam'</script> ''')
 
 @login_required(login_url='/')
@@ -607,20 +654,75 @@ def compreply(request):
 @login_required(login_url='/')
 def updanswer(request):
     answerpapper = request.FILES['file']
-    key = "qsdrt"
-    en = encrypt(str(answerpapper.read()), key)
-    print("123456", en)
+
     ans=FileSystemStorage()
+
     a=ans.save(answerpapper.name,answerpapper)
+
+
+
     student_id = request.POST['select1']
     exam_id = request.POST['select3']
-    ob = answersheet()
-    ob.student_id = student.objects.get(id=student_id)
-    ob.exam_id = exam.objects.get(id=exam_id)
-    ob.answerpapper = str(en)
-    ob.date=datetime.today()
-    ob.save()
-    return HttpResponse('''<script>alert("send Successfull");window.location='/uploadanswer'</script> ''')
+    key = "qsdrt"
+    ob=answersheet.objects.filter(exam_id__id=exam_id,student_id__id=student_id)
+    if len(ob)==0:
+        ob = answersheet()
+        ob.student_id = student.objects.get(id=student_id)
+        ob.exam_id = exam.objects.get(id=exam_id)
+        ob.answerpapper = a
+        ob.date=datetime.today()
+        ob.hashvalue=""
+        ob.save()
+
+
+
+
+        sha256_hash = hashlib.sha256()
+
+
+
+        print(a,"path=========================")
+        with open(r"C:\main project\university_exam_evaluation\media/"+a, "rb") as imageFile:
+            for byte_block in iter(lambda: imageFile.read(4096), b""):
+                sha256_hash.update(byte_block)
+            print(sha256_hash.hexdigest())
+        with open(r"C:\main project\university_exam_evaluation\media/" + a, "rb") as imageFile:
+            stri = base64.b64encode(imageFile.read()).decode('utf-8')
+            enc1 = encrypt(stri, key).decode('utf-8')
+
+            fh = open(r"C:\main project\university_exam_evaluation\media/"+a, "wb")
+            fh.write(base64.b64decode(enc1))
+            fh.close()
+
+        hashval=str(sha256_hash.hexdigest())
+        ob.hashvalue = hashval
+        ob.save()
+
+        bucket_name = 'samplebucket1riit'
+        conn = boto.connect_s3(AWS_ACCESS_KEY_ID,
+                               AWS_SECRET_ACCESS_KEY)
+
+        bucket = conn.create_bucket(bucket_name, location=boto.s3.connection.Location.DEFAULT)
+
+        testfile = r"C:\main project\university_exam_evaluation\media/"+a
+
+        namef = a
+
+        def percent_cb(complete, total):
+            sys.stdout.write('.')
+            sys.stdout.flush()
+
+        k = Key(bucket)
+        k.key = namef
+        k.set_contents_from_filename(testfile,
+                                     cb=percent_cb, num_cb=10)
+
+
+
+
+        return HttpResponse('''<script>alert("send Successfull");window.location='/uploadanswer'</script> ''')
+    else:
+        return HttpResponse('''<script>alert("already uploaded");window.location='/uploadanswer'</script> ''')
 
 @login_required(login_url='/')
 def admin_staffaloc(request):
@@ -748,6 +850,92 @@ def revalallocstf(request,id):
     ob = staff.objects.all()
     return render(request,"revalallocationstaff.html",{'val':ob})
 
+@login_required(login_url='/')
+def download(request,id):
+    ob = staff_allocation.objects.get(id=id)
+
+    path=r"C:\main project\university_exam_evaluation\media\\"+str(ob.answersheet_id.answerpapper)
+    key = "qsdrt"
+    #
+    hv=ob.answersheet_id.hashvalue
+    sha256_hash = hashlib.sha256()
+    with open(path, "rb") as imageFile:
+            stri = base64.b64encode(imageFile.read()).decode('utf-8')
+            print(stri)
+
+
+            dec2 = decrypt(stri, key).decode('utf-8')
+
+
+            fh1 = open(r"C:\main project\university_exam_evaluation\media\\d_"+str(ob.answersheet_id.answerpapper), "wb")
+            fh1.write(base64.b64decode(dec2))
+            fh1.close()
+    with open(r"C:\main project\university_exam_evaluation\media\\d_"+str(ob.answersheet_id.answerpapper), "rb") as imageFile:
+        for byte_block in iter(lambda: imageFile.read(4096), b""):
+            sha256_hash.update(byte_block)
+        print(sha256_hash.hexdigest())
+
+    hashval = str(sha256_hash.hexdigest())
+
+    if hv==hashval:
+        return render(request,"view/clic here to download.html",{'v':"d_"+str(ob.answersheet_id.answerpapper)})
+    else:
+        return HttpResponse('''<script>alert("the hash value not same");window.location='/stfwork'</script> ''')
+
+
+
+@login_required(login_url='/')
+def downloadrev(request,id):
+    ob = stafrevalallocation.objects.get(id=id)
+    path=r"C:\main project\university_exam_evaluation\media\\"+str(ob.revaluation_id.answersheet_id.answerpapper)
+    key = "qsdrt"
+    #
+    hv = ob.revaluation_id.answersheet_id.hashvalue
+    sha256_hash = hashlib.sha256()
+    with open(path, "rb") as imageFile:
+                stri = base64.b64encode(imageFile.read()).decode('utf-8')
+                print(stri)
+
+
+                dec2 = decrypt(stri, key).decode('utf-8')
+
+
+                fh1 = open(r"C:\main project\university_exam_evaluation\media\\d_"+str(ob.revaluation_id.answersheet_id.answerpapper), "wb")
+                fh1.write(base64.b64decode(dec2))
+                fh1.close()
+    with open(r"C:\main project\university_exam_evaluation\media\\d_" + str(ob.revaluation_id.answersheet_id.answerpapper),
+              "rb") as imageFile:
+        for byte_block in iter(lambda: imageFile.read(4096), b""):
+            sha256_hash.update(byte_block)
+        print(sha256_hash.hexdigest())
+
+    hashval = str(sha256_hash.hexdigest())
+
+    if hv == hashval:
+        return render(request, "view/clic here to download.html",{'v': "d_" + str(ob.revaluation_id.answersheet_id.answerpapper)})
+    else:
+        return HttpResponse('''<script>alert("the hash value not same");window.location='/stfrevwork'</script> ''')
+
+
+
+@login_required(login_url='/')
+def downloadstd(request,id):
+    ob = request_answersheet.objects.get(id=id)
+    path=r"C:\main project\university_exam_evaluation\media\\"+str(ob.answersheet_id.answerpapper)
+    key = "qsdrt"
+    #
+    with open(path, "rb") as imageFile:
+                stri = base64.b64encode(imageFile.read()).decode('utf-8')
+                print(stri)
+
+
+                dec2 = decrypt(stri, key).decode('utf-8')
+
+
+                fh1 = open(r"C:\main project\university_exam_evaluation\media\\d_"+str(ob.answersheet_id.answerpapper), "wb")
+                fh1.write(base64.b64decode(dec2))
+                fh1.close()
+    return render(request,"view/clic here to download.html",{'v':"d_"+str(ob.answersheet_id.answerpapper)})
 
 
 @login_required(login_url='/')

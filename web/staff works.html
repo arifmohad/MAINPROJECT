@@ -58,7 +58,7 @@
     <tbody>
     <tr class="active-row">
       <td> {{ i.answersheet_id.exam_id.subject_id.subjects }} </td>
-      <td> <a href="{{ i.answersheet_id.answerpapper.url }}" download > download</a> </td>
+      <td> <a href="{% url 'download' id=i.id %}"> verify and download</a> </td>
         <td> {{ i.status }} </td>
          <td> {{ i.score }} </td>
       <td>&nbsp;{{ i.datetime }} </td>

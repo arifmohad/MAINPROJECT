@@ -80,6 +80,7 @@ class answersheet(models.Model):
     student_id = models.ForeignKey(student, on_delete=models.CASCADE)
     exam_id = models.ForeignKey(exam,on_delete=models.CASCADE)
     answerpapper = models.FileField()
+    hashvalue = models.CharField(max_length=300)
     date = models.DateField()
 
 

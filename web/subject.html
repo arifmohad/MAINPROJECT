@@ -93,7 +93,7 @@
         <td width="242"><label>
           <select name="select" required class="textbox">
             {% for i in val %}
-            <option value="{{i.id}}">{{i.course_name}}</option>
+            <option value="{{i.id}}">{{i.course_name}} - {{i.department_id.clgid.college_name}}</option>
             {% endfor %}
           </select>
         </label></td>
