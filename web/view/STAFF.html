@@ -1,35 +1,80 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+{% extends 'collegeindex.html' %}
+{% block body %}
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>login</title>
 </head>
+<style>
 
+
+
+     .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1em;
+    font-family: sans-serif;
+    min-width: 600px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+    .styled-table thead tr {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    text-align: left;
+}
+    .styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+    .styled-table tbody tr {
+    border-bottom: 2px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #0a0a0a;
+}
+    .styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #0a0a0a;
+}
+</style>
 <body>
 <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
   <div align="center">
-    <table width="344" border="1">
+    <table width="344" border="1" class="styled-table">
+      <thead>
       <tr>
         <td colspan="2">NAME</td>
+          <td>COLLEGE NAME</td>
+          <td>DEPARTMENT</td>
+          <td>GENDER</td>
         <td>PLACE</td>
-        <td>COLLEGE</td>
-        <td>DEPARTMENT</td>
+        <td>POST</td>
         <td>EMAIL</td>
         <td>PHONE</td>
       </tr>
-       {% for i in val %}
-      <tr>
+      </thead>
+
+      {% for i in val %}
+       <tbody>
+      <tr class="active-row">
         <td width="328" colspan="2">{{ i.name }}</td>
-        <td width="328">&nbsp;{{ i.place }}</td>
-        <td width="328">&nbsp;{{ i.pin }}</td>
-        <td width="328">&nbsp;{{ i.pin }}</td>
-        <td width="328">&nbsp;</td>
-        <td width="328">&nbsp;</td>
+        <td width="328"> {{ i.college_id.college_name }}</td>
+        <td width="328">&nbsp;{{ i.department_id.dept }}</td>
+          <td width="328">{{ i.gender }}</td>
+          <td width="328">{{ i.place }}</td>
+        <td width="328">{{ i.post }}</td>
+        <td width="328">&nbsp;{{ i.email }}</td>
+        <td width="328">&nbsp;{{ i.phone }}</td>
       </tr>
-       {% endfor %}
-      </table>  
+       </tbody>
+      {% endfor %}
+      </table>
   </div>
   <div align="center"></div>
 </form>
 </body>
-</html>
+{% endblock %}

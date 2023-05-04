@@ -193,7 +193,8 @@ def clg_details(request):
 
 @login_required(login_url='/')
 def view_staff(request):
-    return render(request,"view/STAFF.html")
+    ob = staff.objects.filter(college_id__lid__id=request.session['lid'])
+    return render(request,"view/STAFF.html",{'val':ob})
 @login_required(login_url='/')
 def view_student(request):
     ob = student.objects.filter(staff_id__lid__id=request.session['lid'])
