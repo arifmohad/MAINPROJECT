@@ -69,6 +69,7 @@
         <td width="328">{{ i.post }}</td>
         <td width="328">&nbsp;{{ i.email }}</td>
         <td width="328">&nbsp;{{ i.phone }}</td>
+         <td><a href="{% url 'deletestf' id=i.id %}">delete</a></td>
       </tr>
        </tbody>
       {% endfor %}

@@ -21,8 +21,8 @@ from boto.s3.key import Key
 
 
 
-AWS_ACCESS_KEY_ID = 'AKIAVTA624LZIZKAIXO3'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = 'AKIAVTA624LZCX7UGF6M'
+AWS_SECRET_ACCESS_KEY = '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'
 
 
 def main(request):
@@ -173,7 +173,15 @@ def adminallocatestaff(request):
 @login_required(login_url='/')
 def allocstf(request,id):
     request.session['eid']=id
-    ob = staff.objects.all()
+    eob = exam.objects.get(id=id)
+    idd = eob.subject_id.course_id.department_id.dept
+    print("==============================================")
+    print("==============================================")
+    print("==============================================")
+    print(idd)
+    print(idd)
+    print(idd)
+    ob = staff.objects.filter(department_id__dept=idd)
     return render(request,"allocation2.html",{'val':ob})
 
 @login_required(login_url='/')
@@ -218,7 +226,9 @@ def view_examstaff(request):
 
 @login_required(login_url='/')
 def view_examstudent(request):
-    obj= course.objects.all()
+    obj= student.objects.get(lid__id=request.session['lid'])
+    id=obj.course_id.department_id.clgid.id
+    obj= course.objects.filter(department_id__clgid__id=id)
 
 
     return render(request,"view/view exam student.html",{'val1':obj})
@@ -250,8 +260,12 @@ def searchstaff(request):
 
 @login_required(login_url='/')
 def searchstud(request):
+    obj = student.objects.get(lid__id=request.session['lid'])
+    id = obj.course_id.department_id.clgid.id
+    obj = course.objects.filter(department_id__clgid__id=id)
     subject_id = request.POST['select']
-    obj = course.objects.all()
+    print(subject_id,"========================")
+    # obj = course.objects.filter(department_id__clgid__lid=request.session['lid'])
     ob1=exam.objects.filter(subject_id__course_id__id=subject_id)
 
 
@@ -608,6 +622,12 @@ def deletestudent(request,id):
 
     return HttpResponse('''<script>alert("student deleted");window.location='/view_student'</script> ''')
 
+def deletestf(request,id):
+    ob=staff.objects.get(id=id)
+    ob.delete()
+
+    return HttpResponse('''<script>alert("staff deleted");window.location='/view_staff'</script> ''')
+
 @login_required(login_url='/')
 def complaintbtn(request):
     postcomplaint = request.POST['Complaint']
@@ -848,7 +868,13 @@ def revalallocatestaff(request):
 @login_required(login_url='/')
 def revalallocstf(request,id):
     request.session['eid']=id
-    ob = staff.objects.all()
+    eob=exam.objects.get(id=id)
+    idd=eob.subject_id.course_id.department_id.dept
+    print(allocstf)
+    print(allocstf)
+    print(allocstf)
+    print(allocstf)
+    ob = staff.objects.filter(department_id__dept=idd)
     return render(request,"revalallocationstaff.html",{'val':ob})
 
 @login_required(login_url='/')

@@ -34,12 +34,14 @@ urlpatterns=[
     path('view_stdcomplaint',views.view_stdcomplaint,name="view_stdcomplaint"),
     path('delete/<int:id>', views.delete, name="delete"),
     path('deletestudent/<int:id>', views.deletestudent, name="deletestudent"),
+    path('deletestf/<int:id>', views.deletestf, name="deletestf"),
     path('adminallocatestaff', views.adminallocatestaff, name="adminallocatestaff"),
     path('allocstf/<int:id>', views.allocstf, name="allocstf"),
     path('view_ansrequest', views.view_ansrequest, name="view_ansrequest"),
     path('admin_staffaloc', views.admin_staffaloc, name="admin_staffaloc"),
     path('request_ansadd', views.request_ansadd, name="request_ansadd"),
     path('stfwork', views.stfwork, name="stfwork"),
+
 
     path('clgreg',views.clgreg,name="clgreg"),
     path('stfreg',views.stfreg,name="stfreg"),

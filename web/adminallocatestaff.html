@@ -51,7 +51,9 @@
         <thead>
       <tr>
         <td>Date</td>
+          <td width="86">course </td>
         <td width="86">subject </td>
+
        <!--<td><select name="select" id="">-->
             <!--{% for i in v %}-->
             <!--<option value="{{i.id}}">{{i.}}</option>-->
@@ -71,6 +73,7 @@
         <tbody>
       <tr>
       <td> {{ i.date }} </td>
+           <td> {{ i.subject_id.course_id.course_name }} </td>
       <td> {{ i.subject_id.subjects }} </td>
       <td>&nbsp;{{ i.count }}</td>
       <td><p><a href="allocstf/{{i.id}}" class="btn btn-primary">allocate</a></p>
