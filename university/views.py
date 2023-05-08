@@ -211,15 +211,19 @@ def view_student(request):
 
 @login_required(login_url='/')
 def view_exam(request):
-    obj= course.objects.all()
+    obj = college.objects.get(lid__id=request.session['lid'])
+    id = obj.id
+    obj = course.objects.filter(department_id__clgid__id=id)
+    # obj= course.objects.filter(department_id__clgid__id=request.session['lid'])
 
 
     return render(request,"view/EXAM.html",{'val1':obj})
 
 @login_required(login_url='/')
 def view_examstaff(request):
-    obj= course.objects.all()
-
+    obj = staff.objects.get(lid__id=request.session['lid'])
+    id = obj.department_id.clgid.id
+    obj = course.objects.filter(department_id__clgid__id=id)
 
     return render(request,"view/staffviewexam.html",{'val1':obj})
 
@@ -243,16 +247,22 @@ def view_adminexam(request):
 
 @login_required(login_url='/')
 def search(request):
+    obj = college.objects.get(lid__id=request.session['lid'])
+    id = obj.id
+    obj = course.objects.filter(department_id__clgid__id=id)
     subject_id = request.POST['select']
-    obj = course.objects.all()
+    # obj = course.objects.filter(department_id__clgid__id=request.session['lid'])
     ob1=exam.objects.filter(subject_id__course_id__id=subject_id)
 
     return render(request, "view/EXAM.html",{'val':ob1,'val1':obj})
 
 @login_required(login_url='/')
 def searchstaff(request):
+    obj = staff.objects.get(lid__id=request.session['lid'])
+    id = obj.department_id.clgid.id
+    obj = course.objects.filter(department_id__clgid__id=id)
     subject_id = request.POST['select']
-    obj = course.objects.all()
+    # obj = course.objects.all()
     ob1=exam.objects.filter(subject_id__course_id__id=subject_id)
 
 
@@ -274,8 +284,11 @@ def searchstud(request):
 
 @login_required(login_url='/')
 def searchresult(request):
+    obj = college.objects.get(lid__id=request.session['lid'])
+    id = obj.id
+    obj = course.objects.filter(department_id__clgid__id=id)
     subject_id = request.POST['select']
-    obj = course.objects.all()
+    # obj = course.objects.all()
     ob1=staff_allocation.objects.filter(answersheet_id__exam_id__subject_id__course_id__id=subject_id,answersheet_id__student_id__course_id__department_id__clgid__lid__id=request.session['lid'],status='finish')
 
 
@@ -312,9 +325,9 @@ def view_result(request):
         else:
             i.st="n"
         res.append(i)
-    print(res[0].st,"============")
-    print(res,"============")
-    print(res,"============")
+    # print(res[0].st,"============")
+    # print(res,"============")
+    # print(res,"============")
     return render(request,"view/RESULT.html",{'val':res})
 
 @login_required(login_url='/')
@@ -328,7 +341,10 @@ def view_complaint(request):
 
 @login_required(login_url='/')
 def clgresult(request):
-    obj=course.objects.all()
+    obj = college.objects.get(lid__id=request.session['lid'])
+    id = obj.id
+    obj = course.objects.filter(department_id__clgid__id=id)
+    # obj=course.objects.all()
     ob = staff_allocation.objects.filter(answersheet_id__student_id__course_id__department_id__clgid__lid__id=request.session['lid'],status='finish')
     return render(request,"view/clgviewresult.html",{'val':ob,'val1':obj})
 
@@ -598,11 +614,13 @@ def coursebtn(request):
 @login_required(login_url='/')
 def subjbtn(request):
     subjects = request.POST['subject']
+    subject_code = request.POST['subject code']
     semester = request.POST['select1']
     course_id = request.POST['select']
 
     dob = subject()
     dob.subjects = subjects
+    dob.subject_code = subject_code
     dob.semester = semester
     dob.course_id=course.objects.get(id=course_id)
 

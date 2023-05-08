@@ -34,6 +34,7 @@ class course(models.Model):
 class subject(models.Model):
     course_id=models.ForeignKey(course,on_delete=models.CASCADE)
     subjects=models.CharField(max_length=100)
+    subject_code = models.CharField(max_length=100)
     semester=models.IntegerField()   
 
 

@@ -14,8 +14,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/university/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="36" column="63" lean-forward="false" selection-start-line="36" selection-start-column="63" selection-end-line="36" selection-end-column="63" />
+            <state relative-caret-position="60">
+              <caret line="55" column="17" lean-forward="false" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -24,18 +24,38 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/university/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="25" column="8" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="8" />
+            <state relative-caret-position="153">
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="subject.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/subject.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="213">
+              <caret line="76" column="35" lean-forward="false" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="student index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/student index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="151">
+              <caret line="52" column="77" lean-forward="true" selection-start-line="52" selection-start-column="77" selection-end-line="52" selection-end-column="77" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/university/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="24" column="65" lean-forward="false" selection-start-line="24" selection-start-column="65" selection-end-line="24" selection-end-column="65" />
+            <state relative-caret-position="67">
+              <caret line="622" column="20" lean-forward="false" selection-start-line="622" selection-start-column="8" selection-end-line="622" selection-end-column="20" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -43,11 +63,41 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="view subject.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/view/view subject.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="227">
+              <caret line="55" column="26" lean-forward="false" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EXAM.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/view/EXAM.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="935">
+              <caret line="55" column="16" lean-forward="false" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clgviewresult.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/view/clgviewresult.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="799">
+              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="adminallocatestaff.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/adminallocatestaff.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="75" column="62" lean-forward="true" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="62" />
+            <state relative-caret-position="1275">
+              <caret line="75" column="62" lean-forward="false" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -56,38 +106,8 @@
       <file leaf-file-name="allocation2.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/allocation2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="77" column="56" lean-forward="true" selection-start-line="77" selection-start-column="56" selection-end-line="77" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view exam student.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/view/view exam student.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="47" column="30" lean-forward="false" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="staff register.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/staff register.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2363">
-              <caret line="139" column="14" lean-forward="false" selection-start-line="139" selection-start-column="14" selection-end-line="139" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="STUDENT.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/view/STUDENT.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1394">
-              <caret line="82" column="72" lean-forward="true" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="72" />
+            <state relative-caret-position="1309">
+              <caret line="77" column="56" lean-forward="false" selection-start-line="77" selection-start-column="56" selection-end-line="77" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -104,18 +124,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>login</find>
-      <find>chn</find>
-      <find>upda</find>
-      <find>userpay</find>
-      <find>encry</find>
-      <find>decry</find>
       <find>encr</find>
       <find>RESULT.html</find>
       <find>down</find>
       <find>examschedule</find>
       <find>exambtn</find>
-      <find>upd</find>
       <find>upload</find>
       <find>uploa</find>
       <find>stdreg</find>
@@ -134,6 +147,13 @@
       <find>view_examstudent</find>
       <find>staff</find>
       <find>allocstf</find>
+      <find>clgresult</find>
+      <find>viewexam</find>
+      <find>uploadanswer</find>
+      <find>upd</find>
+      <find>subject</find>
+      <find>addsubject</find>
+      <find>subjbtn</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -141,7 +161,6 @@
       <list>
         <option value="$PROJECT_DIR$/web/student.html" />
         <option value="$PROJECT_DIR$/web/admin index.html" />
-        <option value="$PROJECT_DIR$/web/student index.html" />
         <option value="$PROJECT_DIR$/web/student register.html" />
         <option value="$PROJECT_DIR$/web/course.html" />
         <option value="$PROJECT_DIR$/web/allocate staff.html" />
@@ -152,12 +171,10 @@
         <option value="$PROJECT_DIR$/web/college register.html" />
         <option value="$PROJECT_DIR$/web/view/allocate staff.html" />
         <option value="$PROJECT_DIR$/web/view/COLLEGE DETAILS.html" />
-        <option value="$PROJECT_DIR$/web/view/EXAM.html" />
         <option value="$PROJECT_DIR$/web/view/DEPARTMENT.html" />
         <option value="$PROJECT_DIR$/web/view/COMPLAINT.html" />
         <option value="$PROJECT_DIR$/web/view/staffviewexam.html" />
         <option value="$PROJECT_DIR$/web/view/view course.html" />
-        <option value="$PROJECT_DIR$/web/view/view subject.html" />
         <option value="$PROJECT_DIR$/web/view/view_examadmin.html" />
         <option value="$PROJECT_DIR$/web/Revaluation.html" />
         <option value="$PROJECT_DIR$/web/revalallocation.html" />
@@ -165,7 +182,6 @@
         <option value="$PROJECT_DIR$/web/view/view stdcomplaint.html" />
         <option value="$PROJECT_DIR$/web/view/clgviewresult.html" />
         <option value="$PROJECT_DIR$/web/staffindex.html" />
-        <option value="$PROJECT_DIR$/university/models.py" />
         <option value="$PROJECT_DIR$/web/view/clic here to download.html" />
         <option value="$PROJECT_DIR$/web/staff works.html" />
         <option value="$PROJECT_DIR$/web/staffrevalworks.html" />
@@ -176,7 +192,6 @@
         <option value="$PROJECT_DIR$/web/view/RESULT.html" />
         <option value="$PROJECT_DIR$/web/Exam.html" />
         <option value="$PROJECT_DIR$/web/upload answersheet.html" />
-        <option value="$PROJECT_DIR$/web/subject.html" />
         <option value="$PROJECT_DIR$/web/update password.html" />
         <option value="$PROJECT_DIR$/web/view/student profile.html" />
         <option value="$PROJECT_DIR$/web/view/STUDENT.html" />
@@ -189,11 +204,16 @@
         <option value="$PROJECT_DIR$/web/staff register.html" />
         <option value="$PROJECT_DIR$/web/view/view exam student.html" />
         <option value="$PROJECT_DIR$/web/adminallocatestaff.html" />
+        <option value="$PROJECT_DIR$/web/view/EXAM.html" />
+        <option value="$PROJECT_DIR$/web/student index.html" />
+        <option value="$PROJECT_DIR$/university/models.py" />
+        <option value="$PROJECT_DIR$/web/subject.html" />
         <option value="$PROJECT_DIR$/university/views.py" />
+        <option value="$PROJECT_DIR$/web/view/view subject.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="676" />
     <option name="width" value="697" />
     <option name="height" value="735" />
@@ -330,16 +350,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18381241" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18986385" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889733" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49228394" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49228394" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -362,13 +383,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/view/allocate staff.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="60" column="11" lean-forward="true" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/Revaluation.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
@@ -401,13 +415,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1649">
           <caret line="97" column="14" lean-forward="false" selection-start-line="97" selection-start-column="14" selection-end-line="97" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/view/view subject.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="67" column="66" lean-forward="true" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="66" />
         </state>
       </provider>
     </entry>
@@ -520,13 +527,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/subject.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="63" column="83" lean-forward="true" selection-start-line="63" selection-start-column="76" selection-end-line="63" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/update password.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
@@ -559,13 +559,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="59" column="28" lean-forward="false" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/view/clgviewresult.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -618,18 +611,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/student index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="51" column="47" lean-forward="false" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/view/STUDENT.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1394">
-          <caret line="82" column="72" lean-forward="true" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="72" />
-          <folding />
+          <caret line="82" column="72" lean-forward="false" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="72" />
         </state>
       </provider>
     </entry>
@@ -637,7 +622,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1207">
           <caret line="71" column="39" lean-forward="false" selection-start-line="71" selection-start-column="39" selection-end-line="71" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -645,7 +629,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12427">
           <caret line="731" column="26" lean-forward="false" selection-start-line="731" selection-start-column="26" selection-end-line="731" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -653,7 +636,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="799">
           <caret line="47" column="30" lean-forward="false" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -661,49 +643,88 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2363">
           <caret line="139" column="14" lean-forward="false" selection-start-line="139" selection-start-column="14" selection-end-line="139" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/allocation2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="77" column="56" lean-forward="true" selection-start-line="77" selection-start-column="56" selection-end-line="77" selection-end-column="56" />
+        <state relative-caret-position="1309">
+          <caret line="77" column="56" lean-forward="false" selection-start-line="77" selection-start-column="56" selection-end-line="77" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/adminallocatestaff.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="75" column="62" lean-forward="true" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="62" />
+        <state relative-caret-position="1275">
+          <caret line="75" column="62" lean-forward="false" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/view/EXAM.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="55" column="16" lean-forward="false" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/view/clgviewresult.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/student index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="52" column="77" lean-forward="true" selection-start-line="52" selection-start-column="77" selection-end-line="52" selection-end-column="77" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/university/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="36" column="63" lean-forward="false" selection-start-line="36" selection-start-column="63" selection-end-line="36" selection-end-column="63" />
+        <state relative-caret-position="60">
+          <caret line="55" column="17" lean-forward="false" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/subject.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="76" column="35" lean-forward="false" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/university/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="25" column="8" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="8" />
+        <state relative-caret-position="153">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/university/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="24" column="65" lean-forward="false" selection-start-line="24" selection-start-column="65" selection-end-line="24" selection-end-column="65" />
+        <state relative-caret-position="67">
+          <caret line="622" column="20" lean-forward="false" selection-start-line="622" selection-start-column="8" selection-end-line="622" selection-end-column="20" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/view/view subject.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="55" column="26" lean-forward="false" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
